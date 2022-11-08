@@ -1,0 +1,128 @@
+[
+  {
+    "alt": "blue suit",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Blue Suit",
+    "price": 200,
+    "rating": 4.5,
+    "salePrice": 175,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/blue-suit.jpg",
+    "style": "formal"
+  },
+  {
+    "alt": "black leather jacket",
+    "brandNew": true,
+    "category": "tops",
+    "name": "Black Leather Jacket",
+    "price": 125,
+    "rating": 4,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/black-leather-jacket.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "black suit",
+    "brandNew": true,
+    "category": "tops",
+    "name": "Black Suit",
+    "price": 300,
+    "rating": 5,
+    "salePrice": 270,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/black-suit.jpg",
+    "style": "formal"
+  },
+  {
+    "alt": "brown jacket",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Brown Jacket",
+    "price": 75,
+    "rating": 3.5,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/brown-jacket.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "brown leather coat",
+    "brandNew": true,
+    "category": "tops",
+    "name": "Brown Leather Coat",
+    "price": 130,
+    "rating": 4,
+    "salePrice": 90,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/brown-leather-coat.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "dark gray jacket",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Dark Gray Jacket",
+    "price": 115,
+    "rating": 4.5,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/dark-gray-jacket.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "denim jacket",
+    "brandNew": true,
+    "category": "tops",
+    "name": "Denim Jacket",
+    "price": 90,
+    "rating": 3.5,
+    "salePrice": 75,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/denim-jacket.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "light blue suit",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Light Blue Suit",
+    "price": 85,
+    "rating": 4,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/light-blue-suit.jpg",
+    "style": "formal"
+  },
+  {
+    "alt": "suspenders",
+    "brandNew": true,
+    "category": "accessories",
+    "name": "Suspenders",
+    "price": 45,
+    "rating": 4,
+    "salePrice": 30,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/suspenders.jpg",
+    "style": "formal"
+  },
+  {
+    "alt": "turqoise long sleeve shirt",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Turqoise Long Sleeve Shirt",
+    "price": 35,
+    "rating": 4,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/turquoise-long-sleeve-shirt.jpg",
+    "style": "casual"
+  },
+  {
+    "alt": "tuxedo",
+    "brandNew": true,
+    "category": "tops",
+    "name": "Tuxedo",
+    "price": 150,
+    "rating": 4.5,
+    "salePrice": 135,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/tuxedo.jpg",
+    "style": "formal"
+  },
+  {
+    "alt": "winter jacket",
+    "brandNew": false,
+    "category": "tops",
+    "name": "Winter Jacket",
+    "price": 130,
+    "rating": 4.5,
+    "src": "https://cdn.jsdelivr.net/gh/tupasj/TOP_Shopping_Cart/src/assets/images/MensClothing/winter-jacket.jpg",
+    "style": "casual"
+  }
+]
