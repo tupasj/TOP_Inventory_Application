@@ -1,12 +1,26 @@
 const mongoose = require("mongoose");
+const productModelFile = require("./productModel");
+const productSchema = productModelFile.productSchema;
 
 const userSchema = mongoose.Schema(
   {
-    name: String,
-    email: String,
-    password: String,
-    member: Boolean,
+    cart: [productSchema],
+    email: {
+      type: String,
+      unique: true,
+    },
     joinedDate: Date,
+    member: Boolean,
+    name: {
+      type: String,
+      maxLength: 75,
+      required: true,
+    },
+    password: {
+      type: String,
+      maxLength: 100,
+      required: true,
+    },
     profilePicture: String,
   },
   {
