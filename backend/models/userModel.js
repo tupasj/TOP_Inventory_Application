@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
-const productModelFile = require("./productModel");
-const productSchema = productModelFile.productSchema;
+const clothingItemModelFile = require("./clothingItemModel");
+const clothingItemSchema = clothingItemModelFile.clothingItemSchema;
 
 const userSchema = mongoose.Schema(
   {
-    cart: [productSchema],
+    cart: [clothingItemSchema],
     email: {
       type: String,
       unique: true,

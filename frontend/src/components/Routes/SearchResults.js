@@ -10,7 +10,7 @@ const SearchResults = (props) => {
   // const { filter } = useContext(ProductFilterContext);
   // const searchQuery = props.searchQuery;
   // const type = props.type;
-  // const productsOfType = ClothesAPI.getProductsByType(type);
+  // const productsOfType = ClothesAPI.getClothingByType(type);
   // const searchResults = getSearchResults(searchQuery, productsOfType);
   // const navigate = useNavigate();
 

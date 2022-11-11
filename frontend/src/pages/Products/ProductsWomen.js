@@ -6,7 +6,7 @@
 
 const ProductsWomen = () => {
   // const { filter } = useContext(ProductFilterContext);
-  // const products = ClothesAPI.getProductsByType("women");
+  // const products = ClothesAPI.getClothingByType("women");
 
   return (
     <>

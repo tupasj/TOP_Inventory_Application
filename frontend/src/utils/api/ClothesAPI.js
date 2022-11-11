@@ -38,7 +38,7 @@
 //   return order;
 // };
 
-// const getProductsByType = (type) => {
+// const getClothingByType = (type) => {
 //   const allClothes = MensClothing.Set1.concat(WomensClothing.Set1);
 
 //   switch (type) {
@@ -61,7 +61,7 @@
 //   getCurrentProduct: getCurrentProduct,
 //   getCurrentProductById: getCurrentProductById,
 //   makeOrder: makeOrder,
-//   getProductsByType: getProductsByType,
+//   getClothingByType: getClothingByType,
 // };
 
 // export default ClothesAPI;
