@@ -1,10 +1,9 @@
-// Rename to clothes util instead of api
-// Interact with the database instead of getting locally stored data
+import axios from "axios";
 
-// import MensClothing from "../assets/data/MensClothing.json";
-// import WomensClothing from "../assets/data/WomensClothing.json";
-
-// const _allProducts = MensClothing.Set1.concat(WomensClothing.Set1);
+const getAllClothes = async () => {
+    const allClothesResponse = await axios.get(`http://localhost:4000/products`);
+    return allClothesResponse.data;
+};
 
 // const getCurrentProduct = (urlParam) => {
 //   const currentProduct = _allProducts.find(
@@ -57,11 +56,8 @@
 //   }
 // };
 
-// const ClothesAPI = {
-//   getCurrentProduct: getCurrentProduct,
-//   getCurrentProductById: getCurrentProductById,
-//   makeOrder: makeOrder,
-//   getClothingByType: getClothingByType,
-// };
+const ClothesAPI = {
+    getAllClothes,
+};
 
-// export default ClothesAPI;
+export default ClothesAPI;

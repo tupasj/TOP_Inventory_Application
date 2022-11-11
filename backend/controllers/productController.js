@@ -3,7 +3,7 @@ const ClothingItem = clothingItemModelFile.clothingItemModel;
 
 const getClothing = async (req, res) => {
     try {
-        const allClothingItems = await ClothingItem.findOne();
+        const allClothingItems = await ClothingItem.find();
         res.status(200).json(allClothingItems);
     } catch (error) {
         console.log(error);
