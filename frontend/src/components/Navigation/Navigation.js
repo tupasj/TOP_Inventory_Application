@@ -8,8 +8,8 @@ const Navigation = (props) => {
         <nav>
             <Link to="/men" onClick={() => setType('men')}>Men</Link>
             <Link to="/women" onClick={() => setType('women')}>Women</Link>
-            <Link to="/brand-new" onClick={() => setType('brandNew')}>Brand new</Link>
-            <Link className="nav__anchor--red" to="/on-sale" onClick={() => setType('onSale')}>On Sale</Link>
+            <Link to="/brand-new" onClick={() => setType('brand-new')}>Brand new</Link>
+            <Link className="nav__anchor--red" to="/on-sale" onClick={() => setType('on-sale')}>On Sale</Link>
             <Outlet />
         </nav>
     );

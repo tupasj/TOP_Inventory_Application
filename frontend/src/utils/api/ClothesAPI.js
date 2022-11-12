@@ -1,8 +1,13 @@
 import axios from "axios";
 
-const getAllClothes = async () => {
-    const allClothesResponse = await axios.get(`http://localhost:4000/products`);
-    return allClothesResponse.data;
+const getClothesByType = async (clothesType) => {
+    if (clothesType) {
+        const clothesByTypeResponse = await axios.get(`http://localhost:4000/products/${clothesType}`);
+        return clothesByTypeResponse.data;
+    } else {
+        const allClothesResponse = await axios.get(`http://localhost:4000/products`);
+        return allClothesResponse.data;
+    }
 };
 
 // const getCurrentProduct = (urlParam) => {
@@ -57,7 +62,7 @@ const getAllClothes = async () => {
 // };
 
 const ClothesAPI = {
-    getAllClothes,
+    getClothesByType,
 };
 
 export default ClothesAPI;

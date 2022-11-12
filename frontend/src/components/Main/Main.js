@@ -31,14 +31,22 @@ const Main = (props) => {
 
   useEffect(() => {
     const getAllClothes = async () => {
-      const allClothes = await ClothesAPI.getAllClothes();
+      const allClothes = await ClothesAPI.getClothesByType();
       setClothes(allClothes);
     };
     getAllClothes();
   }, []);
 
   useEffect(() => {
-    console.log('allClothes:', clothes[0]);
+    const getClothesByType = async (clothesType) => {
+      const clothesByType = await ClothesAPI.getClothesByType(clothesType);
+      setClothes(clothesByType);
+    };
+    getClothesByType();
+  }, [type]);
+
+  useEffect(() => {
+    console.log('clothes[0]', clothes[0]);
   }, [clothes]);
 
   return (
