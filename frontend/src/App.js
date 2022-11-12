@@ -1,4 +1,4 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useEffect } from "react";
 import { ordersReducer } from "./reducers/ordersReducer";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
@@ -43,6 +43,10 @@ const App = () => {
       },
     });
   };
+
+  useEffect(() => {
+    console.log('type:', type);
+  }, [type]);
 
   // useEffect(() => {
   //   // Firebase auth state observer

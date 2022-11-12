@@ -7,7 +7,6 @@ import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
 import { calculateItemCount } from "../../utils/cartUtils";
 import { RoutingError } from "../Routes/RoutingError";
-import { ProductsAll, ProductsMen, ProductsWomen, ProductsBrandNew, ProductsOnSale } from "../../pages/Products";
 import { SearchResults } from "../Routes/SearchResults";
 import { NoProductMatch } from "../Routes/NoProductMatch";
 import { Products } from "./Products";
@@ -42,7 +41,7 @@ const Main = (props) => {
       const clothesByType = await ClothesAPI.getClothesByType(clothesType);
       setClothes(clothesByType);
     };
-    getClothesByType();
+    getClothesByType(type);
   }, [type]);
 
   useEffect(() => {
@@ -55,12 +54,6 @@ const Main = (props) => {
         <UsesCartButtonContext.Provider value={{itemCount, setItemCount, orders, replaceOrders, addOrder}}>
           <ProductFilterContext.Provider value={{filter, removedFilter}}>
             {/* <Routes>
-              <Route index element={<ProductsAll />} />
-              <Route path="/all" element={<ProductsAll />} />
-              <Route path="/men" element={<ProductsMen />} />
-              <Route path="/women" element={<ProductsWomen />} />
-              <Route path="/brand-new" element={<ProductsBrandNew />} />
-              <Route path="/on-sale" element={<ProductsOnSale />} />
               <Route path="/product-view/:paramId" element={<ProductView />} />
               <Route path={`/results/search_query=${searchQuery}`} element={<SearchResults searchQuery={searchQuery} type={type}/> } />
               <Route path='/products-no-match' element={<NoProductMatch searchQuery={searchQuery} />} />
