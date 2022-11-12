@@ -11,7 +11,7 @@ const Products = (props) => {
         products.map((product) => {
           return (
             <div key={product._id} className="product">
-              <Link to={`/product-view/${product.id}`}>
+              <Link to={`/product-view/${product._id}`}>
                 <img
                   className="product__image"
                   src={product.src}
@@ -35,7 +35,7 @@ const Products = (props) => {
                 )}
               </div>
               <div className="product__buttons">
-                <AddToCartButton productID={product.id} />
+                <AddToCartButton productID={product._id} />
               </div>
             </div>
           );

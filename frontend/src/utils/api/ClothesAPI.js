@@ -10,6 +10,15 @@ const getClothesByType = async (clothesType) => {
     }
 };
 
+const getSelectedProduct = (urlParam, products) => {
+    console.log('products: ', products);
+    console.log('urlParam: ', urlParam);
+    const selectedProduct = products.find(
+        (product) => product._id = urlParam.paramId
+    );
+    return selectedProduct;
+};
+
 // const getCurrentProduct = (urlParam) => {
 //   const currentProduct = _allProducts.find(
 //     (product) => product.id === urlParam.paramId
@@ -63,6 +72,7 @@ const getClothesByType = async (clothesType) => {
 
 const ClothesAPI = {
     getClothesByType,
+    getSelectedProduct,
 };
 
 export default ClothesAPI;

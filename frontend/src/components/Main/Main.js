@@ -44,22 +44,18 @@ const Main = (props) => {
     getClothesByType(type);
   }, [type]);
 
-  useEffect(() => {
-    console.log('clothes[0]', clothes[0]);
-  }, [clothes]);
-
   return (
     <main className="products-view">
       <Filter filter={filter} setFilter={setFilter} setRemovedFilter={setRemovedFilter} />
         <UsesCartButtonContext.Provider value={{itemCount, setItemCount, orders, replaceOrders, addOrder}}>
           <ProductFilterContext.Provider value={{filter, removedFilter}}>
-            {/* <Routes>
-              <Route path="/product-view/:paramId" element={<ProductView />} />
+            <Routes>
+              <Route path="/*" element={<Products products={clothes} />} />
+              <Route path="/product-view/:paramId" element={<ProductView products={clothes} />} />
               <Route path={`/results/search_query=${searchQuery}`} element={<SearchResults searchQuery={searchQuery} type={type}/> } />
               <Route path='/products-no-match' element={<NoProductMatch searchQuery={searchQuery} />} />
               <Route path="*" element={<RoutingError />} />
-            </Routes> */}
-            {clothes[0] && <Products products={clothes} />}
+            </Routes>
           </ProductFilterContext.Provider>
         </UsesCartButtonContext.Provider>
     </main>

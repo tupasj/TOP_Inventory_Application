@@ -22,10 +22,15 @@ const getOnSaleClothing = async (req, res) => {
   getClothingByType(req, res, { salePrice: { $exists: true } });
 };
 
+const getProductByID = async (req, res) => {
+  getClothingByType(req, res, {_id: '636e980c0d6df4fde2b6002b'});
+};
+
 module.exports = {
   getClothing,
   getMensClothing,
   getWomensClothing,
   getBrandNewClothing,
   getOnSaleClothing,
+  getProductByID,
 };

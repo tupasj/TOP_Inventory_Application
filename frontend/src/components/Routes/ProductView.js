@@ -1,23 +1,28 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext, useEffect } from "react";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AddToCartButton } from "../UI/AddToCartButton";
-// import ClothesAPI from "../../api/ClothesAPI";
+import ClothesAPI from "../../utils/api/ClothesAPI";
 
-const ProductView = () => {
+const ProductView = (props) => {
+  const products = props.products;
   const quantityRef = useRef();
-  // const urlParam = useParams();
+  const urlParam = useParams();
   const {itemCount, setItemCount, orders, replaceOrders, addOrder} = useContext(UsesCartButtonContext);
-  // const currentProduct = ClothesAPI.getCurrentProduct(urlParam);
+  const selectedProduct = ClothesAPI.getSelectedProduct(urlParam, products);
+
+  useEffect(() => {
+    console.log('selectedProduct', selectedProduct);
+  }, []);
 
   return (
     <div className="product-view">
       <div className="product-view__main">
-        {/* <img
+        <img
           className="product-view__img"
-          src={currentProduct.src}
-          alt={currentProduct.alt}
-        ></img> */}
+          src={selectedProduct.src}
+          alt={selectedProduct.alt}
+        ></img>
         <div className="product-view__buttons-container">
           {/* <span className="product-view__product-name">{currentProduct.name}</span> */}
           <div className="product-view__quantity-input-container">
