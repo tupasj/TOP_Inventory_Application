@@ -1,10 +1,10 @@
 const clothingItemModelFile = require("../models/clothingItemModel");
 const ClothingItem = clothingItemModelFile.clothingItemModel;
 
-const getClothingByType = async (req, res, clothingType) => {
+const getProductByID = async (req, res, productID) => {
   try {
-    const clothing = await ClothingItem.find(clothingType);
-    res.status(200).json(clothing);
+    const product = await ClothingItem.findById(productID);
+    res.status(200).json(product);
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: error.message });
@@ -12,5 +12,5 @@ const getClothingByType = async (req, res, clothingType) => {
 };
 
 module.exports = {
-  getClothingByType,
+  getProductByID,
 };

@@ -10,28 +10,10 @@ const getClothesByType = async (clothesType) => {
     }
 };
 
-const getSelectedProduct = (urlParam, products) => {
-    console.log('products: ', products);
-    console.log('urlParam: ', urlParam);
-    const selectedProduct = products.find(
-        (product) => product._id = urlParam.paramId
-    );
-    return selectedProduct;
+const getSelectedProduct = async (productID) => {
+    const selectedProductResponse = await axios.get(`http://localhost:4000/product-view/${productID}`);
+    return selectedProductResponse.data;
 };
-
-// const getCurrentProduct = (urlParam) => {
-//   const currentProduct = _allProducts.find(
-//     (product) => product.id === urlParam.paramId
-//   );
-//   return currentProduct;
-// };
-
-// const getCurrentProductById = (productID) => {
-//   const currentProduct = _allProducts.find(
-//     (product) => product.id === productID
-//   );
-//   return currentProduct;
-// };
 
 // const makeOrder = (currentProduct, productQuantity) => {
 //   const productSalePrice = currentProduct.salePrice

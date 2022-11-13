@@ -1,18 +1,22 @@
-import { useRef, useContext, useEffect } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { useParams } from "react-router-dom";
 import { AddToCartButton } from "../UI/AddToCartButton";
 import ClothesAPI from "../../utils/api/ClothesAPI";
 
-const ProductView = (props) => {
-  const products = props.products;
+const ProductView = () => {
+  const [selectedProduct, setSelectedProduct] = useState({});
   const quantityRef = useRef();
   const urlParam = useParams();
   const {itemCount, setItemCount, orders, replaceOrders, addOrder} = useContext(UsesCartButtonContext);
-  const selectedProduct = ClothesAPI.getSelectedProduct(urlParam, products);
 
   useEffect(() => {
-    console.log('selectedProduct', selectedProduct);
+    const getSelectedProduct = async () => {
+      const selectedProduct = await ClothesAPI.getSelectedProduct(urlParam.paramId);
+      setSelectedProduct(selectedProduct);
+    };
+    getSelectedProduct();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -24,7 +28,7 @@ const ProductView = (props) => {
           alt={selectedProduct.alt}
         ></img>
         <div className="product-view__buttons-container">
-          {/* <span className="product-view__product-name">{currentProduct.name}</span> */}
+          <span className="product-view__product-name">{selectedProduct.name}</span>
           <div className="product-view__quantity-input-container">
             <label htmlFor="quantity">Quantity: </label>
             <input className="input__quantity" ref={quantityRef} type="number" id="quantity" name="quantity" min="1" max="100"></input>

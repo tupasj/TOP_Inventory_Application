@@ -51,7 +51,7 @@ const Main = (props) => {
           <ProductFilterContext.Provider value={{filter, removedFilter}}>
             <Routes>
               <Route path="/*" element={<Products products={clothes} />} />
-              <Route path="/product-view/:paramId" element={<ProductView products={clothes} />} />
+              <Route path="/product-view/:paramId" element={<ProductView />} />
               <Route path={`/results/search_query=${searchQuery}`} element={<SearchResults searchQuery={searchQuery} type={type}/> } />
               <Route path='/products-no-match' element={<NoProductMatch searchQuery={searchQuery} />} />
               <Route path="*" element={<RoutingError />} />
