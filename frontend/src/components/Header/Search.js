@@ -12,11 +12,17 @@ const Search = (props) => {
   const getSearchedProducts = async (searchQuery, type) => {
     let searchedProducts;
     if (type) {
-      searchedProducts = await ClothesAPI.getSearchedProducts(searchQuery, type);
+      searchedProducts = await ClothesAPI.getSearchedProducts(
+        searchQuery,
+        type
+      );
     } else {
       searchedProducts = await ClothesAPI.getSearchedProducts(searchQuery);
     }
     setClothes(searchedProducts);
+    if (searchedProducts.length === 0) {
+      navigate("/error/no-product-match");
+    }
   };
 
   const handleChange = (e) => {

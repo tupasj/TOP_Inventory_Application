@@ -1,10 +1,8 @@
-const NoProductMatch = (props) => {
-  const searchQuery = props.searchQuery;
-
+const NoProductMatch = () => {
   return (
     <div>
-      Could not find any products matching {`'${searchQuery}'`}. Try searching for
-      a different product.
+      Could not find any products matching the search query. Try searching for a
+      different product.
     </div>
   );
 };
