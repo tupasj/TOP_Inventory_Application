@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Search = (props) => {
+  const type = props.type;
   const setSearchQuery = props.setSearchQuery;
   const [searchValue, setSearchValue] = useState("");
   const navigate = useNavigate();
@@ -12,11 +13,17 @@ const Search = (props) => {
 
   const handleSubmit = (e) => {
     if (e.key === "Enter" || e.type !== "keydown") {
-      if ((searchValue !== '') && (typeof(searchValue) !== "number")) {
-        setSearchQuery(searchValue);
-        navigate(`/results/search_query=${searchValue}`);
-      } else {
-        navigate('no-product-match');
+      if (searchValue !== "" && typeof searchValue !== "number") {
+        if (type) {
+          setSearchQuery({
+            searchValue: searchValue,
+            type: type,
+          });
+          navigate(`/results/search_query=${searchValue}&type=${type}`);
+        } else {
+          setSearchQuery(searchValue);
+          navigate(`/results/search_query=${searchValue}`);
+        }
       }
     }
   };

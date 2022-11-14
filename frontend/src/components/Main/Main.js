@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Filter } from "./Filter";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ProductView } from "../Routes";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
 import { calculateItemCount } from "../../utils/cartUtils";
 import { RoutingError } from "../Routes/RoutingError";
-import { SearchResults } from "../Routes/SearchResults";
 import { NoProductMatch } from "../Routes/NoProductMatch";
 import { Products } from "./Products";
 import ClothesAPI from "../../utils/api/ClothesAPI";
@@ -19,10 +17,12 @@ const Main = (props) => {
   const replaceOrders = props.replaceOrders;
   const addOrder = props.addOrder;
   const searchQuery = props.searchQuery;
+  const setSearchQuery = props.setSearchQuery;
   const type = props.type;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
   const [clothes, setClothes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     calculateItemCount(orders, setItemCount);
@@ -44,6 +44,15 @@ const Main = (props) => {
     getClothesByType(type);
   }, [type]);
 
+  useEffect(() => {
+    const getSearchedProducts = async (searchQuery) => {
+      const searchedProducts = await ClothesAPI.getSearchedProducts(searchQuery);
+      setClothes(searchedProducts);
+    };
+    getSearchedProducts(searchQuery);
+    console.log('searchQuery: ', searchQuery);
+  }, [searchQuery]);
+
   return (
     <main className="products-view">
       <Filter filter={filter} setFilter={setFilter} setRemovedFilter={setRemovedFilter} />
@@ -52,8 +61,8 @@ const Main = (props) => {
             <Routes>
               <Route path="/*" element={<Products products={clothes} />} />
               <Route path="/product-view/:paramId" element={<ProductView />} />
-              <Route path={`/results/search_query=${searchQuery}`} element={<SearchResults searchQuery={searchQuery} type={type}/> } />
-              <Route path='/products-no-match' element={<NoProductMatch searchQuery={searchQuery} />} />
+              <Route path={`/results/search_query`} element={<Products products={clothes} />} />
+              <Route path='/error/no-product-match' element={<NoProductMatch />} />
               <Route path="*" element={<RoutingError />} />
             </Routes>
           </ProductFilterContext.Provider>

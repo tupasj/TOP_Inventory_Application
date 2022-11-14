@@ -1,17 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const {
-  getClothing,
-  getMensClothing,
-  getWomensClothing,
-  getBrandNewClothing,
-  getOnSaleClothing,
-} = require("../controllers/productController");
+const { getClothing } = require("../controllers/productController");
 
 router.route("/").get(getClothing);
-router.route("/men").get(getMensClothing);
-router.route("/women").get(getWomensClothing);
-router.route("/brand-new").get(getBrandNewClothing);
-router.route("/on-sale").get(getOnSaleClothing);
+router.route("/:type").get((req, res) => {
+  getClothing(req, res, req.params.type);
+});
 
 module.exports = router;

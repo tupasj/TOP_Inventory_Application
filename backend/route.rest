@@ -1,1 +1,1 @@
-GET http://localhost:4000/product-view/636e980c0d6df4fde2b60022
+GET http://localhost:4000/results/search_query=Black Leather Jacket

@@ -1,29 +1,14 @@
-const { getClothingByType } = require("../utils/productControllerUtils");
+const { getClothingByType, getQueryByType } = require("../utils/clothingUtils");
 
-const getClothing = async (req, res) => {
-  getClothingByType(req, res);
-};
-
-const getMensClothing = async (req, res) => {
-  getClothingByType(req, res, { gender: "male" });
-};
-
-const getWomensClothing = async (req, res) => {
-  getClothingByType(req, res, { gender: "female" });
-};
-
-const getBrandNewClothing = async (req, res) => {
-  getClothingByType(req, res, { brandNew: true });
-};
-
-const getOnSaleClothing = async (req, res) => {
-  getClothingByType(req, res, { salePrice: { $exists: true } });
+const getClothing = async (req, res, type) => {
+  if (type) {
+    const query = getQueryByType(type);
+    getClothingByType(req, res, query);
+  } else {
+    getClothingByType(req, res);
+  }
 };
 
 module.exports = {
   getClothing,
-  getMensClothing,
-  getWomensClothing,
-  getBrandNewClothing,
-  getOnSaleClothing,
 };

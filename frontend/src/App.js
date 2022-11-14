@@ -65,7 +65,7 @@ const App = () => {
 
   return (
     <HashRouter baseName="/TOP_Shopping_Cart">
-      <Header itemCount={itemCount} setSearchQuery={setSearchQuery} setType={setType} />
+      <Header itemCount={itemCount} setSearchQuery={setSearchQuery} type={type} setType={setType} />
       <Navigation setType={setType} />
       <Routes>
           <Route
@@ -78,6 +78,7 @@ const App = () => {
                 replaceOrders={replaceOrders}
                 addOrder={addOrder}
                 searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
                 type={type}
               />
             }

@@ -15,6 +15,16 @@ const getSelectedProduct = async (productID) => {
     return selectedProductResponse.data;
 };
 
+const getSearchedProducts = async (searchQuery, type) => {
+    if (type) {
+        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchQuery}&${type}`);
+        return searchedProduct.data;
+    } else {
+        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchQuery}`);
+        return searchedProduct.data;
+    }
+};
+
 // const makeOrder = (currentProduct, productQuantity) => {
 //   const productSalePrice = currentProduct.salePrice
 //     ? currentProduct.salePrice
@@ -33,28 +43,10 @@ const getSelectedProduct = async (productID) => {
 //   return order;
 // };
 
-// const getClothingByType = (type) => {
-//   const allClothes = MensClothing.Set1.concat(WomensClothing.Set1);
-
-//   switch (type) {
-//     case "all":
-//       return allClothes;
-//     case "men":
-//       return MensClothing.Set1;
-//     case "women":
-//       return WomensClothing.Set1;
-//     case "brandNew":
-//       return allClothes.filter((element) => element.brandNew);
-//     case "onSale":
-//       return allClothes.filter((element) => element.salePrice);
-//     default:
-//       console.log("Could not get products by type");
-//   }
-// };
-
 const ClothesAPI = {
     getClothesByType,
     getSelectedProduct,
+    getSearchedProducts,
 };
 
 export default ClothesAPI;
