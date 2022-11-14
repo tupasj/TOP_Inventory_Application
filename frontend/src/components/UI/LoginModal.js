@@ -23,7 +23,7 @@ const LoginModal = (props) => {
 
   return (
     <dialog className="login-modal">
-        <span className="modal-close" onClick={closeLoginModal}>X</span>
+        <span className="modal-close" onClick={closeLoginModal}><i className="fa-solid fa-x"></i></span>
         <p className="login-modal-message">Log in or sign up for the Lorem Ipsum Clothing store</p>
         <form method="dialog">
             <label htmlFor="email">
