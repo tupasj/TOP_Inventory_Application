@@ -15,12 +15,12 @@ const getSelectedProduct = async (productID) => {
     return selectedProductResponse.data;
 };
 
-const getSearchedProducts = async (searchQuery, type) => {
+const getSearchedProducts = async (searchValue, type) => {
     if (type) {
-        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchQuery}&${type}`);
+        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchValue}/${type}`);
         return searchedProduct.data;
     } else {
-        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchQuery}`);
+        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchValue}`);
         return searchedProduct.data;
     }
 };

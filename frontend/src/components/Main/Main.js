@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Filter } from "./Filter";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { ProductView } from "../Routes";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
@@ -16,13 +17,11 @@ const Main = (props) => {
   const orders = props.orders;
   const replaceOrders = props.replaceOrders;
   const addOrder = props.addOrder;
-  const searchQuery = props.searchQuery;
-  const setSearchQuery = props.setSearchQuery;
   const type = props.type;
+  const clothes = props.clothes;
+  const setClothes = props.setClothes;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
-  const [clothes, setClothes] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     calculateItemCount(orders, setItemCount);
@@ -43,15 +42,6 @@ const Main = (props) => {
     };
     getClothesByType(type);
   }, [type]);
-
-  useEffect(() => {
-    const getSearchedProducts = async (searchQuery) => {
-      const searchedProducts = await ClothesAPI.getSearchedProducts(searchQuery);
-      setClothes(searchedProducts);
-    };
-    getSearchedProducts(searchQuery);
-    console.log('searchQuery: ', searchQuery);
-  }, [searchQuery]);
 
   return (
     <main className="products-view">

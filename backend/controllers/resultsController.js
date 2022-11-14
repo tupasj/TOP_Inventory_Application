@@ -1,15 +1,17 @@
 const clothingItemModelFile = require("../models/clothingItemModel");
+const { getQueryByType } = require("../utils/clothingUtils");
 const ClothingItem = clothingItemModelFile.clothingItemModel;
 
-const getProductByName = async (req, res, productName, productType) => {
-  const productNameRegex = new RegExp(productName, "i");
-
+const getProductSearchResults = async (req, res, searchValue, type) => {
+  const searchValueRegex = new RegExp(searchValue, "i");
   try {
     let product;
-    if (productType) {
-      product = await ClothingItem.find({ name: productNameRegex });
+    if (type) {
+      let queryWithType = getQueryByType(type);
+      queryWithType.name = searchValueRegex;
+      product = await ClothingItem.find(queryWithType);
     } else {
-      product = await ClothingItem.find({ name: productNameRegex });
+      product = await ClothingItem.find({ name: searchValueRegex });
     }
     res.status(200).json(product);
   } catch (error) {
@@ -19,5 +21,5 @@ const getProductByName = async (req, res, productName, productType) => {
 };
 
 module.exports = {
-  getProductByName,
+  getProductSearchResults,
 };

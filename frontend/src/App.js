@@ -12,6 +12,7 @@ const App = () => {
   const [orders, dispatch] = useReducer(ordersReducer, []);
   const [searchQuery, setSearchQuery] = useState('');
   const [type, setType] = useState('');
+  const [clothes, setClothes] = useState([]);
 
   const addOrder = (order) => {
     dispatch({
@@ -65,7 +66,7 @@ const App = () => {
 
   return (
     <HashRouter baseName="/TOP_Shopping_Cart">
-      <Header itemCount={itemCount} setSearchQuery={setSearchQuery} type={type} setType={setType} />
+      <Header itemCount={itemCount} setSearchQuery={setSearchQuery} type={type} setType={setType} setClothes={setClothes} />
       <Navigation setType={setType} />
       <Routes>
           <Route
@@ -78,8 +79,9 @@ const App = () => {
                 replaceOrders={replaceOrders}
                 addOrder={addOrder}
                 searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
                 type={type}
+                clothes={clothes}
+                setClothes={setClothes}
               />
             }
           />
