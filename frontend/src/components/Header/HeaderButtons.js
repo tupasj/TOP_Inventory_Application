@@ -20,7 +20,7 @@ const HeaderButtons = (props) => {
         <i className="fa-solid fa-user"></i>
         <i className="fa-sharp fa-solid fa-caret-down"></i>
       </div>
-      {dropdownActive && <AccountDropdown />}
+      {dropdownActive && <AccountDropdown setDropdownActive={setDropdownActive} />}
       <Link to="/cart">
         <i className="fa-solid fa-cart-shopping">
           <span className="cart-counter">{itemCount}</span>
