@@ -1,1 +1,9 @@
-GET http://localhost:4000/results/search_query=black
+POST http://localhost:4000/user
+Content-Type: application/json
+
+{
+    "email": "testemail2@gmail.com",
+    "name": "lorem ipsum",
+    "password": "1234abcd",
+    "profilePicture": "https://github.com/tupasj/TOP_Shopping_Cart/blob/main/src/assets/images/MensClothing/black-suit.jpg"
+}

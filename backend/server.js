@@ -8,14 +8,20 @@ const connectDatabase = require("./config/database");
 const productRoutes = require("./routes/productRoutes");
 const productViewRoutes = require("./routes/productViewRoutes");
 const resultsRoutes = require("./routes/resultsRoutes");
+const userRoutes = require("./routes/userRoutes");
 const { errorHandler } = require("./middleware/error");
 
 connectDatabase();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 app.use("/products", productRoutes);
 app.use("/product-view", productViewRoutes);
 app.use("/results", resultsRoutes);
+app.use("/user", userRoutes);
+
 
 app.use(errorHandler);
 

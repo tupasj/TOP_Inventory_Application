@@ -9,8 +9,14 @@ const userSchema = mongoose.Schema(
       type: String,
       unique: true,
     },
-    joinedDate: Date,
-    member: Boolean,
+    joinedDate: {
+      type: Date,
+      default: Date.now,
+    },
+    member: {
+      type: Boolean,
+      default: false,
+    },
     name: {
       type: String,
       maxLength: 75,
@@ -21,7 +27,10 @@ const userSchema = mongoose.Schema(
       maxLength: 100,
       required: true,
     },
-    profilePicture: String,
+    profilePicture: {
+      type: String,
+      required: true,
+    },
   },
   {
     timestamps: true,
