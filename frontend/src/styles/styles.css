@@ -57,7 +57,7 @@ form > label > input {
   padding: 5px;
 }
 
-.login-modal {
+.login-modal, .signup-modal {
   width: 420px;
   border: 0;
   border-radius: 4px;
@@ -90,7 +90,7 @@ form > label {
   color: var(--red);
 }
 
-.login-modal-message {
+.login-modal-message, .signup-modal-message {
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
@@ -105,11 +105,11 @@ form > label {
   width: 50%;
 }
 
-.login-button {
+.login-button, .signup-button {
   width: 100%;
 }
 
-.login-button:hover {
+.login-button:hover, .signup-button:hover {
   border-color: #e6bd93;
   background-color: #e6bd93;
 }

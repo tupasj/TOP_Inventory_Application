@@ -7,10 +7,16 @@ const AccountDropdown = (props) => {
     setDropdownActive(false);
   };
 
+  const openSignupModal = () => {
+    const signupModal = document.querySelector(".signup-modal");
+    signupModal.showModal();
+    setDropdownActive(false);
+  };
+
   return (
     <div className="account-dropdown">
       <div className="account-dropdown__login" onClick={openLoginModal}>Log In</div>
-      <div className="account-dropdown__signup">Sign Up</div>
+      <div className="account-dropdown__signup" onClick={openSignupModal}>Sign Up</div>
     </div>
   );
 };

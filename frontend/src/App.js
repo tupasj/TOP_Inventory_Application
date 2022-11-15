@@ -5,6 +5,7 @@ import { Header } from "./components/Header";
 import { Navigation } from "./components/Navigation";
 import { Main } from "./components/Main";
 import { LoginModal } from "./components/UI";
+import { SignupModal } from "./components/UI/SignupModal";
 import { Cart } from "./pages/Cart/Cart";
 
 const App = () => {
@@ -100,6 +101,7 @@ const App = () => {
         />
       </Routes>
       <LoginModal replaceOrders={replaceOrders} setItemCount={setItemCount} />
+      <SignupModal />
     </HashRouter>
   );
 };
