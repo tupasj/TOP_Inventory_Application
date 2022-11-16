@@ -1,6 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ErrorMessageText } from "./ErrorMessageText";
+import ClothesAPI from "../../utils/api/ClothesAPI";
 
 const SignupForm = () => {
   const initialValues = {
@@ -24,7 +25,7 @@ const SignupForm = () => {
   });
 
   const onSubmit = (values) => {
-    console.log("Form data", values);
+    ClothesAPI.createUser(values);
   };
 
   const closeSignupModal = () => {

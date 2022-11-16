@@ -5,7 +5,6 @@ const createUser = async (req, res) => {
     email: req.body.email,
     name: req.body.name,
     password: req.body.password,
-    profilePicture: req.body.profilePicture,
   });
 
   try {

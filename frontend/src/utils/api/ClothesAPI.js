@@ -25,28 +25,15 @@ const getSearchedProducts = async (searchValue, type) => {
     }
 };
 
-// const makeOrder = (currentProduct, productQuantity) => {
-//   const productSalePrice = currentProduct.salePrice
-//     ? currentProduct.salePrice
-//     : false;
-
-//   const order = {
-//     id: currentProduct.id,
-//     name: currentProduct.name,
-//     src: currentProduct.src,
-//     alt: currentProduct.alt,
-//     price: currentProduct.price,
-//     salePrice: productSalePrice,
-//     quantity: productQuantity,
-//   };
-
-//   return order;
-// };
+const createUser = (payload) => {
+    axios.post(`http://localhost:4000/user`, payload);
+};
 
 const ClothesAPI = {
     getClothesByType,
     getSelectedProduct,
     getSearchedProducts,
+    createUser,
 };
 
 export default ClothesAPI;
