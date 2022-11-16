@@ -9,15 +9,15 @@ const SignupForm = () => {
     password: "",
   };
 
-  const onSubmit = (values) => {
-    console.log("Form data", values);
-  };
-
   const validationSchema = Yup.object({
     name: Yup.string().required("Required!"),
     email: Yup.string().email("Invalid email format").required("Required"),
     password: Yup.string().required("Required"),
   });
+
+  const onSubmit = (values) => {
+    console.log("Form data", values);
+  };
   
   const closeSignupModal = () => {
     const signupModal = document.querySelector(".signup-modal");
@@ -26,11 +26,18 @@ const SignupForm = () => {
     signupModal.close();
   };
 
+  let validationActive = false;
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={validationSchema}
-      onSubmit={onSubmit}
+      validateOnBlur={validationActive}
+      validateOnChange={validationActive}
+      onSubmit={(values, { resetForm }) => {
+        onSubmit(values);
+        resetForm();
+        closeSignupModal();
+      }}
     >
       <dialog className="signup-modal">
         <span className="modal-close" onClick={closeSignupModal}>
@@ -48,7 +55,7 @@ const SignupForm = () => {
           <div className="form-control">
             <label htmlFor="email" />
             <Field type="email" id="email" name="email" placeholder="Email" />
-            <ErrorMessage name="email" />
+            <ErrorMessage name="email" component={ErrorMessageText} />
           </div>
           <div className="form-control">
             <label htmlFor="password" />
@@ -58,10 +65,10 @@ const SignupForm = () => {
               name="password"
               placeholder="Password"
             />
-            <ErrorMessage name="password" />
+            <ErrorMessage name="password" component={ErrorMessageText} />
           </div>
           <div className="password-message"></div>
-          <button className="signup-button" type="submit">
+          <button className="signup-button" type="submit" onClick={() => validationActive = true}>
             Sign Up
           </button>
         </Form>
