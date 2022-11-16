@@ -49,6 +49,11 @@ button {
   background-color: var(--slate-light-gray);
 }
 
+/* Forms */
+.form-error {
+  color: red;
+}
+
 /* UI */
 /* Login Modal */
 form > label > input {
@@ -105,8 +110,17 @@ form > label {
   width: 50%;
 }
 
-.login-button, .signup-button {
+.login-button {
   width: 100%;
+}
+
+.signup-button {
+  width: 75%;
+  padding: 4px 7px 4px 7px;
+  background-color: var(--peach-light);
+  border: 1px solid var(--peach-dark);
+  border-radius: 11px;
+  cursor: pointer;
 }
 
 .login-button:hover, .signup-button:hover {

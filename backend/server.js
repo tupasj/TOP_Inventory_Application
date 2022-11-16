@@ -22,7 +22,6 @@ app.use("/product-view", productViewRoutes);
 app.use("/results", resultsRoutes);
 app.use("/user", userRoutes);
 
-
 app.use(errorHandler);
 
 app.get("/", (req, res) => {
