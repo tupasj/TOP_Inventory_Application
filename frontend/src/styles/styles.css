@@ -51,6 +51,7 @@ button {
 
 /* Forms */
 .form-error {
+  margin-top: 2px;
   color: red;
 }
 
@@ -82,7 +83,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 15px;
   text-align: center;
 }
 

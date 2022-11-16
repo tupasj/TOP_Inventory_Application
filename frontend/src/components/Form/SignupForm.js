@@ -10,15 +10,23 @@ const SignupForm = () => {
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Required!"),
-    email: Yup.string().email("Invalid email format").required("Required"),
-    password: Yup.string().required("Required"),
+    name: Yup.string()
+      .required("This field is required.")
+      .min(2, "Name should be a minimum of 2 characters.")
+      .max(50, "Please enter a name of 50 characters or less"),
+    email: Yup.string()
+      .email("Invalid email format.")
+      .required("This field is required."),
+    password: Yup.string()
+      .required("This field is required.")
+      .min(8, "Passwords should be a minimum 8 characters.")
+      .max(100, "Please enter a password of 100 characters or less."),
   });
 
   const onSubmit = (values) => {
     console.log("Form data", values);
   };
-  
+
   const closeSignupModal = () => {
     const signupModal = document.querySelector(".signup-modal");
     const passwordMessage = document.querySelector(".password-message");
@@ -68,7 +76,11 @@ const SignupForm = () => {
             <ErrorMessage name="password" component={ErrorMessageText} />
           </div>
           <div className="password-message"></div>
-          <button className="signup-button" type="submit" onClick={() => validationActive = true}>
+          <button
+            className="signup-button"
+            type="submit"
+            onClick={() => (validationActive = true)}
+          >
             Sign Up
           </button>
         </Form>

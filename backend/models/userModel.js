@@ -19,11 +19,13 @@ const userSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      maxLength: 75,
+      minLength: 2,
+      maxLength: 50,
       required: true,
     },
     password: {
       type: String,
+      minLength: 8,
       maxLength: 100,
       required: true,
     },
