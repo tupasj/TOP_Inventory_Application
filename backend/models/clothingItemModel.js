@@ -16,16 +16,12 @@ const clothingItemSchema = mongoose.Schema(
     salePrice: Number,
     src: String,
     style: String,
+    quantity: Number,
   },
   {
-    collection: 'clothing',
+    collection: "clothing",
     timestamps: true,
   }
 );
 
-const clothingItemModel = mongoose.model("ClothingItem", clothingItemSchema);
-
-module.exports = {
-  clothingItemSchema: clothingItemSchema,
-  clothingItemModel: clothingItemModel,
-};
+module.exports = mongoose.model("ClothingItem", clothingItemSchema);

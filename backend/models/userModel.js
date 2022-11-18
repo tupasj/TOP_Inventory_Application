@@ -1,10 +1,8 @@
 const mongoose = require("mongoose");
-const clothingItemModelFile = require("./clothingItemModel");
-const clothingItemSchema = clothingItemModelFile.clothingItemSchema;
 
 const userSchema = mongoose.Schema(
   {
-    cart: [clothingItemSchema],
+    cart: [{type: mongoose.Types.ObjectId, ref: "ClothingItem"}],
     email: {
       type: String,
       unique: true,

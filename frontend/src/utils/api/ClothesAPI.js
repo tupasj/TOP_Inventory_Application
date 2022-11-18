@@ -25,8 +25,20 @@ const getSearchedProducts = async (searchValue, type) => {
     }
 };
 
-const createUser = (payload) => {
-    axios.post(`http://localhost:4000/user`, payload);
+const createUser = async (user) => {
+    await axios.post(`http://localhost:4000/user`, user);
+};
+
+const addCartItem = async (clothingItem, quantity) => {
+    if (quantity) {
+        const cartItem = {
+            clothingItem: clothingItem,
+            quantity: quantity,
+        };
+        await axios.post(`http://localhost:4000/cart`, cartItem);
+    } else {
+        await axios.post(`http://localhost:4000/cart`, clothingItem);
+    }
 };
 
 const ClothesAPI = {
@@ -34,6 +46,7 @@ const ClothesAPI = {
     getSelectedProduct,
     getSearchedProducts,
     createUser,
+    addCartItem,
 };
 
 export default ClothesAPI;
