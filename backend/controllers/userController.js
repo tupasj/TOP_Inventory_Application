@@ -1,5 +1,14 @@
 const User = require("../models/userModel");
 
+const getUser = async (req, res) => {
+  try {
+    const user = await User.find({email: req.body.email});
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 const createUser = async (req, res) => {
   const user = new User({
     email: req.body.email,
@@ -16,5 +25,6 @@ const createUser = async (req, res) => {
 };
 
 module.exports = {
+  getUser,
   createUser,
 };

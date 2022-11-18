@@ -1,22 +1,20 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ErrorMessageText } from "./ErrorMessageText";
 import ClothesAPI from "../../utils/api/ClothesAPI";
 
-const SignupForm = (props) => {
-  const closeSignupModal = props.closeSignupModal;
+const LoginForm = (props) => {
+  const setCurrentUser = props.setCurrentUser;
+  const closeLoginModal = props.closeLoginModal;
+  const [generalError, setGeneralError] = useState('');
 
   const initialValues = {
-    name: "",
     email: "",
     password: "",
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string()
-      .required("This field is required.")
-      .min(2, "Name should be a minimum of 2 characters.")
-      .max(50, "Please enter a name of 50 characters or less"),
     email: Yup.string()
       .email("Invalid email format.")
       .required("This field is required."),
@@ -26,8 +24,15 @@ const SignupForm = (props) => {
       .max(100, "Please enter a password of 100 characters or less."),
   });
 
-  const onSubmit = (values) => {
-    ClothesAPI.createUser(values);
+  const onSubmit = async (values) => {
+    console.log("values: ", values);
+    const currentUser = await ClothesAPI.getUser(values.email);
+    if (!currentUser) {
+      setGeneralError("The current account does not exist in our records. Please try a different username and/or password.");
+    } else if (currentUser) {
+      setCurrentUser(currentUser);
+      closeLoginModal();
+    }
   };
 
   let validationActive = false;
@@ -40,15 +45,10 @@ const SignupForm = (props) => {
       onSubmit={(values, { resetForm }) => {
         onSubmit(values);
         resetForm();
-        closeSignupModal();
       }}
     >
       <Form>
-        <div className="form-control">
-          <label htmlFor="name" />
-          <Field type="text" id="name" name="name" placeholder="Name" />
-          <ErrorMessage name="name" component={ErrorMessageText} />
-        </div>
+        {generalError && <ErrorMessageText>{generalError}</ErrorMessageText>}
         <div className="form-control">
           <label htmlFor="email" />
           <Field type="email" id="email" name="email" placeholder="Email" />
@@ -66,15 +66,15 @@ const SignupForm = (props) => {
         </div>
         <div className="password-message"></div>
         <button
-          className="signup-button"
+          className="login-button"
           type="submit"
           onClick={() => (validationActive = true)}
         >
-          Sign Up
+          Log In
         </button>
       </Form>
     </Formik>
   );
 };
 
-export { SignupForm };
+export { LoginForm };

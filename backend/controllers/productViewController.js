@@ -1,5 +1,4 @@
-const clothingItemModelFile = require("../models/clothingItemModel");
-const ClothingItem = clothingItemModelFile.clothingItemModel;
+const ClothingItem = require("../models/clothingItemModel");
 
 const getProductByID = async (req, res, productID) => {
   try {

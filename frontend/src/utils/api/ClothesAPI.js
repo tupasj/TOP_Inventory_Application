@@ -1,12 +1,13 @@
 import axios from "axios";
+import { axiosErrorHandler } from "../errors";
 
 const getClothesByType = async (clothesType) => {
-    if (clothesType) {
-        const clothesByTypeResponse = await axios.get(`http://localhost:4000/products/${clothesType}`);
-        return clothesByTypeResponse.data;
-    } else {
+    if (clothesType === "all") {
         const allClothesResponse = await axios.get(`http://localhost:4000/products`);
         return allClothesResponse.data;
+    } else {
+        const clothesByTypeResponse = await axios.get(`http://localhost:4000/products/${clothesType}`);
+        return clothesByTypeResponse.data;
     }
 };
 
@@ -17,11 +18,20 @@ const getSelectedProduct = async (productID) => {
 
 const getSearchedProducts = async (searchValue, type) => {
     if (type) {
-        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchValue}/${type}`);
-        return searchedProduct.data;
+        const searchedProductResponse = await axios.get(`http://localhost:4000/results/search_query=${searchValue}/${type}`);
+        return searchedProductResponse.data;
     } else {
-        const searchedProduct = await axios.get(`http://localhost:4000/results/search_query=${searchValue}`);
-        return searchedProduct.data;
+        const searchedProductResponse = await axios.get(`http://localhost:4000/results/search_query=${searchValue}`);
+        return searchedProductResponse.data;
+    }
+};
+
+const getUser = async (userEmail) => {
+    try {
+        const userResponse = await axios.get(`http://localhost:4000/user/${userEmail}`);
+        return userResponse.data;
+    } catch (error) {
+        axiosErrorHandler(error);
     }
 };
 
@@ -45,6 +55,7 @@ const ClothesAPI = {
     getClothesByType,
     getSelectedProduct,
     getSearchedProducts,
+    getUser,
     createUser,
     addCartItem,
 };

@@ -1,48 +1,25 @@
-// import { auth, loginEmailPassword, createAccount, logout, signInViaGoogle } from "../../FirebaseServices/firebaseAuth";
-// import { GoogleButton } from 'react-google-button';
+import { LoginForm } from "../Form/LoginForm";
 
 const LoginModal = (props) => {
-  // const replaceOrders = props.replaceOrders;
-  // const setItemCount = props.setItemCount;
-  
+  const setCurrentUser = props.setCurrentUser;
+
   const closeLoginModal = () => {
-    const loginModal = document.querySelector('.login-modal');
-    const passwordMessage = document.querySelector('.password-message');
-    passwordMessage.textContent = '';
+    const loginModal = document.querySelector(".login-modal");
+    const passwordMessage = document.querySelector(".password-message");
+    passwordMessage.textContent = "";
     loginModal.close();
   };
 
-  // const handleLogOut = () => {
-  //   const loggedIn = auth.currentUser ? true : false;
-  //   if (loggedIn) {
-  //     logout();
-  //     replaceOrders([]);
-  //     setItemCount(0);
-  //   };
-  // };
-
   return (
     <dialog className="login-modal">
-        <span className="modal-close" onClick={closeLoginModal}><i className="fa-solid fa-x"></i></span>
-        <p className="login-modal-message">Log in to Lorem Ipsum Clothing store</p>
-        <form method="dialog">
-            <label htmlFor="email">
-              <input type="email" id="email" name="email" placeholder="Email"></input>
-            </label>
-            <label htmlFor="password">
-              <input type="password" id="password" name="password" placeholder="Password"></input>
-            </label>
-            <div className="password-message"></div>
-            <div className="button-group">
-              {/* <button className="login-button" onClick={loginEmailPassword}>Log In</button>
-              <button className="signup-button" onClick={createAccount}>Sign Up</button>
-              <button className="logout-button" onClick={handleLogOut}>Log Out</button> */}
-              <button className="login-button">Log In</button>
-            </div>
-            <div className='reset-password-div'>Forgot your password? <span className='reset-password-span'>Reset password</span></div>
-            {/* <GoogleButton className="google-button" onClick={signInViaGoogle} /> */}
-            {/* <GoogleButton className="google-button" /> */}
-        </form>
+      <span className="modal-close" onClick={closeLoginModal}>
+        <i className="fa-solid fa-x"></i>
+      </span>
+      <p className="login-modal-message">Log in to Lorem Ipsum Clothing</p>
+      <LoginForm
+        setCurrentUser={setCurrentUser}
+        closeLoginModal={closeLoginModal}
+      />
     </dialog>
   );
 };

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import { Filter } from "./Filter";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { ProductView } from "../Routes";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
@@ -22,17 +22,14 @@ const Main = (props) => {
   const setClothes = props.setClothes;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     calculateItemCount(orders, setItemCount);
   });
 
   useEffect(() => {
-    const getAllClothes = async () => {
-      const allClothes = await ClothesAPI.getClothesByType();
-      setClothes(allClothes);
-    };
-    getAllClothes();
+    navigate('/all');
   }, []);
 
   useEffect(() => {

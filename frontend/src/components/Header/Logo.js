@@ -4,7 +4,7 @@ const Logo = (props) => {
   const setType = props.setType;
 
   return (
-    <Link to="/all" onClick={() => setType(false)}>
+    <Link to="/all" onClick={() => setType("all")}>
       <div className="logo">
         <span className="logo__text">
           <span className="logo__text--red">L</span>orem{" "}
