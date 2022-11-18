@@ -26,11 +26,11 @@ const LoginForm = (props) => {
 
   const onSubmit = async (values) => {
     console.log("values: ", values);
-    const currentUser = await ClothesAPI.getUser(values.email);
+    const currentUser = await ClothesAPI.getUser(values.email, values.password);
     if (!currentUser) {
       setGeneralError("The current account does not exist in our records. Please try a different username and/or password.");
     } else if (currentUser) {
-      setCurrentUser(currentUser);
+      setCurrentUser(currentUser.name);
       closeLoginModal();
     }
   };

@@ -259,6 +259,15 @@ header {
   background-color: var(--white);
 }
 
+.account-dropdown__user-greeting {
+  padding-left: 9px;
+  padding-right: 9px;
+  margin-bottom: 7px;
+  color: var(--dark-gray);
+  font-weight: bold;
+  cursor: default;
+}
+
 .account-dropdown__login {
   padding-left: 9px;
   padding-right: 9px;

@@ -26,10 +26,10 @@ const getSearchedProducts = async (searchValue, type) => {
     }
 };
 
-const getUser = async (userEmail) => {
+const getUser = async (email, password) => {
     try {
-        const userResponse = await axios.get(`http://localhost:4000/user/${userEmail}`);
-        return userResponse.data;
+        const userResponse = await axios.get(`http://localhost:4000/user/email=${email}/password=${password}`);
+        return userResponse.data[0];
     } catch (error) {
         axiosErrorHandler(error);
     }

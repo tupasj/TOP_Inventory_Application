@@ -18,7 +18,6 @@ const getClothingByType = async (req, res, query) => {
     const clothing = await ClothingItem.find(query);
     res.status(200).json(clothing);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ message: error.message });
   }
 };
