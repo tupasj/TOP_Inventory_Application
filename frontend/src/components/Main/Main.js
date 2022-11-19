@@ -6,7 +6,6 @@ import { ProductView } from "../Routes";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
 import { UserContext } from "../../context/UserContext";
-import { calculateItemCount } from "../../utils/cartUtils";
 import { RoutingError } from "../Routes/RoutingError";
 import { NoProductMatch } from "../Routes/NoProductMatch";
 import { Products } from "./Products";
@@ -15,20 +14,14 @@ import ClothesAPI from "../../utils/api/ClothesAPI";
 const Main = (props) => {
   const itemCount = props.itemCount;
   const setItemCount = props.setItemCount;
-  const orders = props.orders;
-  const replaceOrders = props.replaceOrders;
-  const addOrder = props.addOrder;
   const type = props.type;
   const clothes = props.clothes;
   const setClothes = props.setClothes;
   const currentUser = props.currentUser;
+  const setCurrentUser = props.setCurrentUser;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    calculateItemCount(orders, setItemCount);
-  });
 
   useEffect(() => {
     navigate('/all');
@@ -45,8 +38,8 @@ const Main = (props) => {
   return (
     <main className="products-view">
       <Filter filter={filter} setFilter={setFilter} setRemovedFilter={setRemovedFilter} />
-        <UsesCartButtonContext.Provider value={{itemCount, setItemCount, orders, replaceOrders, addOrder}}>
-          <UserContext.Provider value={{currentUser}} >
+        <UsesCartButtonContext.Provider value={{itemCount, setItemCount}}>
+          <UserContext.Provider value={{currentUser, setCurrentUser}} >
             <ProductFilterContext.Provider value={{filter, removedFilter}}>
               <Routes>
                 <Route path="/*" element={<Products products={clothes} />} />

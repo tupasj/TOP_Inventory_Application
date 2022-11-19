@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 
-const getUser = async (req, res, email, password) => {
+const verifyLoginCredentials = async (req, res, email, password) => {
   try {
     const user = await User.find({email, password});
     res.status(200).json(user);
@@ -24,7 +24,17 @@ const createUser = async (req, res) => {
   }
 };
 
+const getUser = async (req, res, email) => {
+  try {
+    const user = await User.find({email});
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 module.exports = {
-  getUser,
+  verifyLoginCredentials,
   createUser,
+  getUser,
 };

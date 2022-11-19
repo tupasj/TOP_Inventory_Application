@@ -26,7 +26,7 @@ const getSearchedProducts = async (searchValue, type) => {
     }
 };
 
-const getUser = async (email, password) => {
+const verifyUserCredentials = async (email, password) => {
     try {
         const userResponse = await axios.get(`http://localhost:4000/user/email=${email}/password=${password}`);
         return userResponse.data[0];
@@ -43,18 +43,36 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
     try {
         if (quantity) {
             const cartItemOrder = {
-                userEmail: userEmail,
-                clothingItem: clothingItem,
-                quantity: quantity,
+                userEmail,
+                clothingItem,
+                quantity,
             };
             await axios.post(`http://localhost:4000/user/email=${userEmail}`, cartItemOrder);
         } else {
             const cartItemOrder = {
-                userEmail: userEmail,
-                clothingItem: clothingItem,
+                userEmail,
+                clothingItem,
             };
             await axios.post(`http://localhost:4000/user/email=${userEmail}`, cartItemOrder);
         }
+    } catch (error) {
+        axiosErrorHandler(error);
+    }
+};
+
+const getUser = async (userEmail) => {
+    try {
+        const userResponse = await axios.get(`http://localhost:4000/user/email=${userEmail}`);
+        return userResponse.data;
+    } catch (error) {
+        axiosErrorHandler(error);
+    }
+};
+
+const getUserCart = async (userEmail) => {
+    try {
+        const userCartResponse = await axios.get(`http://localhost:4000/user/email=${userEmail}/user-cart`);
+        return userCartResponse.data;
     } catch (error) {
         axiosErrorHandler(error);
     }
@@ -64,9 +82,11 @@ const ClothesAPI = {
     getClothesByType,
     getSelectedProduct,
     getSearchedProducts,
-    getUser,
+    verifyUserCredentials,
     createUser,
     addCartItem,
+    getUser,
+    getUserCart,
 };
 
 export default ClothesAPI;

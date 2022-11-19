@@ -5,7 +5,7 @@ import ClothesAPI from "../../utils/api/ClothesAPI";
 
 const AddToCartButton = forwardRef(function (props, ref) {
   const productID = props.productID;
-  const { currentUser } = useContext(UserContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
   const urlParam = useParams();
 
   const updateCart = async () => {
@@ -21,6 +21,8 @@ const AddToCartButton = forwardRef(function (props, ref) {
         ClothesAPI.addCartItem(currentUser.email, clothingItem, quantity);
       }
     }
+    const updatedUser = await ClothesAPI.getUser(currentUser.email);
+    setCurrentUser(updatedUser);
   };
 
   return (
