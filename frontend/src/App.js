@@ -78,6 +78,7 @@ const App = () => {
               type={type}
               clothes={clothes}
               setClothes={setClothes}
+              currentUser={currentUser}
             />
           }
         />

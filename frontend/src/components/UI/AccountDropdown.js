@@ -23,7 +23,7 @@ const AccountDropdown = (props) => {
 
   return (
     <div className="account-dropdown">
-      {currentUser && <div className="account-dropdown__user-greeting">Hello, {currentUser}</div>}
+      {currentUser && <div className="account-dropdown__user-greeting">Hello, {currentUser.name}</div>}
       <div className="account-dropdown__login">
         {currentUser ? <span>View Account</span> : <span onClick={openLoginModal}>Log In</span>}
       </div>

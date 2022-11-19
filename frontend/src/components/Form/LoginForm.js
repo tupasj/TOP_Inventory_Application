@@ -30,7 +30,7 @@ const LoginForm = (props) => {
     if (!currentUser) {
       setGeneralError("The current account does not exist in our records. Please try a different username and/or password.");
     } else if (currentUser) {
-      setCurrentUser(currentUser.name);
+      setCurrentUser(currentUser);
       closeLoginModal();
     }
   };

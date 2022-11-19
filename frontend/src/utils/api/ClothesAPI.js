@@ -39,15 +39,24 @@ const createUser = async (user) => {
     await axios.post(`http://localhost:4000/user`, user);
 };
 
-const addCartItem = async (clothingItem, quantity) => {
-    if (quantity) {
-        const cartItem = {
-            clothingItem: clothingItem,
-            quantity: quantity,
-        };
-        await axios.post(`http://localhost:4000/cart`, cartItem);
-    } else {
-        await axios.post(`http://localhost:4000/cart`, clothingItem);
+const addCartItem = async (userEmail, clothingItem, quantity) => {
+    try {
+        if (quantity) {
+            const cartItemOrder = {
+                userEmail: userEmail,
+                clothingItem: clothingItem,
+                quantity: quantity,
+            };
+            await axios.post(`http://localhost:4000/user/email=${userEmail}`, cartItemOrder);
+        } else {
+            const cartItemOrder = {
+                userEmail: userEmail,
+                clothingItem: clothingItem,
+            };
+            await axios.post(`http://localhost:4000/user/email=${userEmail}`, cartItemOrder);
+        }
+    } catch (error) {
+        axiosErrorHandler(error);
     }
 };
 

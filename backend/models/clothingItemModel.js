@@ -16,7 +16,10 @@ const clothingItemSchema = mongoose.Schema(
     salePrice: Number,
     src: String,
     style: String,
-    quantity: Number,
+    quantity: {
+      type: Number,
+      default: 1,
+    },
   },
   {
     collection: "clothing",

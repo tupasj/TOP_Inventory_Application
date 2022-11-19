@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import { ProductView } from "../Routes";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { ProductFilterContext } from "../../context/ProductFilterContext";
+import { UserContext } from "../../context/UserContext";
 import { calculateItemCount } from "../../utils/cartUtils";
 import { RoutingError } from "../Routes/RoutingError";
 import { NoProductMatch } from "../Routes/NoProductMatch";
@@ -20,6 +21,7 @@ const Main = (props) => {
   const type = props.type;
   const clothes = props.clothes;
   const setClothes = props.setClothes;
+  const currentUser = props.currentUser;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
   const navigate = useNavigate();
@@ -44,15 +46,17 @@ const Main = (props) => {
     <main className="products-view">
       <Filter filter={filter} setFilter={setFilter} setRemovedFilter={setRemovedFilter} />
         <UsesCartButtonContext.Provider value={{itemCount, setItemCount, orders, replaceOrders, addOrder}}>
-          <ProductFilterContext.Provider value={{filter, removedFilter}}>
-            <Routes>
-              <Route path="/*" element={<Products products={clothes} />} />
-              <Route path="/product-view/:paramId" element={<ProductView />} />
-              <Route path={`/results/search_query`} element={<Products products={clothes} />} />
-              <Route path='/error/no-product-match' element={<NoProductMatch />} />
-              <Route path="*" element={<RoutingError />} />
-            </Routes>
-          </ProductFilterContext.Provider>
+          <UserContext.Provider value={{currentUser}} >
+            <ProductFilterContext.Provider value={{filter, removedFilter}}>
+              <Routes>
+                <Route path="/*" element={<Products products={clothes} />} />
+                <Route path="/product-view/:paramId" element={<ProductView />} />
+                <Route path={`/results/search_query`} element={<Products products={clothes} />} />
+                <Route path='/error/no-product-match' element={<NoProductMatch />} />
+                <Route path="*" element={<RoutingError />} />
+              </Routes>
+            </ProductFilterContext.Provider>
+          </UserContext.Provider>
         </UsesCartButtonContext.Provider>
     </main>
   );
