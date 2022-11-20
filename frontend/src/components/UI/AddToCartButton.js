@@ -15,34 +15,29 @@ const AddToCartButton = forwardRef(function (props, ref) {
   const urlParam = useParams();
 
   const updateCart = async () => {
+    let clothingItem;
+    let quantityToAdd = 1;
+
     if (!ref) {
-      // Not in product view
-      const clothingItem = await ClothesAPI.getSelectedProduct(productID);
-      addOrder(clothingItem, currentUser);
+      // AddToCartButton is not in product view
+      clothingItem = await ClothesAPI.getSelectedProduct(productID);
     } else if (ref) {
-      // Is in product view
-      const inputValueQuantity = ref.current.valueAsNumber;
-      const productID = urlParam.paramId;
-
-      if (inputValueQuantity >= 1) {
-        // Is valid input?
-        const clothingItem = await ClothesAPI.getSelectedProduct(productID);
-
-        // Handle duplicate orders to either add or update orders
-        const isDuplicateOrder = checkDuplicateOrders(orders, productID);
-        if (isDuplicateOrder) {
-          updateOrderQuantity(
-            productID,
-            inputValueQuantity,
-            orders,
-            replaceOrders
-          );
-        } else {
-          clothingItem.quantity = inputValueQuantity;
-          addOrder(clothingItem, currentUser);
-        }
+      // AddToCartButton is in product view
+      if (!ref.current.valueAsNumber >= 1) {
+        return;
       }
+      quantityToAdd = ref.current.valueAsNumber;
+      clothingItem = await ClothesAPI.getSelectedProduct(urlParam.paramId);
     }
+    
+    // Handle duplicate orders
+    const isDuplicateOrder = checkDuplicateOrders(orders, productID);
+    if (isDuplicateOrder) {
+      updateOrderQuantity(productID, quantityToAdd, orders, replaceOrders);
+    } else {
+      addOrder(clothingItem, currentUser);
+    }
+
     if (currentUser) {
       const updatedUser = await ClothesAPI.getUser(currentUser.email);
       setCurrentUser(updatedUser);
