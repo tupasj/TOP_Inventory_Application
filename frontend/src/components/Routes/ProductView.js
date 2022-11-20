@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
 import { UsesCartButtonContext } from "../../context/UsesCartButtonContext";
 import { useParams } from "react-router-dom";
 import { AddToCartButton } from "../UI/AddToCartButton";
@@ -9,9 +8,7 @@ const ProductView = () => {
   const [selectedProduct, setSelectedProduct] = useState({});
   const quantityRef = useRef();
   const urlParam = useParams();
-  const { itemCount, setItemCount, orders, replaceOrders, addOrder } =
-    useContext(UsesCartButtonContext);
-  const { currentUser } = useContext(UserContext);
+  const { itemCount, setItemCount } = useContext(UsesCartButtonContext);
 
   useEffect(() => {
     const getSelectedProduct = async () => {
@@ -51,12 +48,9 @@ const ProductView = () => {
           <div className="product-view__buttons">
             <AddToCartButton
               ref={quantityRef}
-              orders={orders}
-              replaceOrders={replaceOrders}
-              addOrder={addOrder}
+              productID={urlParam.paramId}
               itemCount={itemCount}
               setItemCount={setItemCount}
-              currentUser={currentUser}
             />
           </div>
         </div>

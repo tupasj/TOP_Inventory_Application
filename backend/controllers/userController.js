@@ -26,7 +26,7 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res, email) => {
   try {
-    const user = await User.find({email});
+    const user = await User.findOne({email});
     res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ message: error.message });

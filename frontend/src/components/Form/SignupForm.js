@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { ErrorMessageText } from "./ErrorMessageText";
 import ClothesAPI from "../../utils/api/ClothesAPI";
 
-const SignupForm = (props) => {
-  const closeSignupModal = props.closeSignupModal;
+const SignupForm = () => {
+  const [signedUp, setSignedUp] = useState(false);
 
   const initialValues = {
     name: "",
@@ -30,50 +31,60 @@ const SignupForm = (props) => {
     ClothesAPI.createUser(values);
   };
 
+  const successfulSignupNotice = () => {
+    const signupModalMessage = document.querySelector(".signup-modal-message");
+    signupModalMessage.textContent = "Signup successful!";
+    setSignedUp(true);
+  };
+
   let validationActive = false;
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={validationSchema}
-      validateOnBlur={validationActive}
-      validateOnChange={validationActive}
-      onSubmit={(values, { resetForm }) => {
-        onSubmit(values);
-        resetForm();
-        closeSignupModal();
-      }}
-    >
-      <Form>
-        <div className="form-control">
-          <label htmlFor="name" />
-          <Field type="text" id="name" name="name" placeholder="Name" />
-          <ErrorMessage name="name" component={ErrorMessageText} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="email" />
-          <Field type="email" id="email" name="email" placeholder="Email" />
-          <ErrorMessage name="email" component={ErrorMessageText} />
-        </div>
-        <div className="form-control">
-          <label htmlFor="password" />
-          <Field
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-          />
-          <ErrorMessage name="password" component={ErrorMessageText} />
-        </div>
-        <div className="password-message"></div>
-        <button
-          className="signup-button"
-          type="submit"
-          onClick={() => (validationActive = true)}
+    <>
+      {!signedUp && (
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          validateOnBlur={validationActive}
+          validateOnChange={validationActive}
+          onSubmit={(values, { resetForm }) => {
+            onSubmit(values);
+            resetForm();
+            successfulSignupNotice();
+          }}
         >
-          Sign Up
-        </button>
-      </Form>
-    </Formik>
+          <Form>
+            <div className="form-control">
+              <label htmlFor="name" />
+              <Field type="text" id="name" name="name" placeholder="Name" />
+              <ErrorMessage name="name" component={ErrorMessageText} />
+            </div>
+            <div className="form-control">
+              <label htmlFor="email" />
+              <Field type="email" id="email" name="email" placeholder="Email" />
+              <ErrorMessage name="email" component={ErrorMessageText} />
+            </div>
+            <div className="form-control">
+              <label htmlFor="password" />
+              <Field
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Password"
+              />
+              <ErrorMessage name="password" component={ErrorMessageText} />
+            </div>
+            <div className="password-message"></div>
+            <button
+              className="signup-button"
+              type="submit"
+              onClick={() => (validationActive = true)}
+            >
+              Sign Up
+            </button>
+          </Form>
+        </Formik>
+      )}
+    </>
   );
 };
 
