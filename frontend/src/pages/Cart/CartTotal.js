@@ -1,5 +1,14 @@
-const CartTotal = (props) => {
-  const subtotal = props.subtotal;
+import { useState, useContext, useEffect } from "react";
+import { CartContext } from "../../context/CartContext";
+import { calculateSubtotal } from "../../utils/cartUtils";
+
+const CartTotal = () => {
+  const [subtotal, setSubtotal] = useState(0);
+  const { orders } = useContext(CartContext);
+
+  useEffect(() => {
+    calculateSubtotal(orders, setSubtotal);
+  }, [orders]);
 
   return (
     <div className="cart__total">

@@ -22,6 +22,7 @@ const AddToCartButton = forwardRef(function (props, ref) {
       // AddToCartButton is not in product view
       clothingItem = await ClothesAPI.getSelectedProduct(productID);
     } else if (ref) {
+      console.log('ref');
       // AddToCartButton is in product view
       if (!ref.current.valueAsNumber >= 1) {
         return;
@@ -35,6 +36,7 @@ const AddToCartButton = forwardRef(function (props, ref) {
     if (isDuplicateOrder) {
       updateOrderQuantity(productID, quantityToAdd, orders, replaceOrders);
     } else {
+      clothingItem.quantity = quantityToAdd;
       addOrder(clothingItem, currentUser);
     }
 

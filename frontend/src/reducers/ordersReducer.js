@@ -6,7 +6,7 @@ const ordersReducer = (orders, action) => {
     case "added": {
       // If currentUser, also update database
       console.log('add order');
-      console.log('action.payload.newOrder', action.payload.newOrder);
+      // console.log('action.payload.newOrder', action.payload.newOrder);
       if (action.payload.currentUser) {
         console.log('currentUser to update cart: ', action.payload.currentUser);
         ClothesAPI.addCartItem(action.payload.currentUser.email, action.payload.newOrder);
@@ -27,7 +27,7 @@ const ordersReducer = (orders, action) => {
     case "change quantity": {
       if (action.payload.quantity >= 1) {
         const ordersWithUpdatedQuantity = orders.filter((order) =>
-          order.id === action.payload.id
+          order._id === action.payload.id
             ? (order.quantity = action.payload.quantity)
             : order.quantity
         );
