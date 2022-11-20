@@ -8,12 +8,13 @@ const Header = (props) => {
     const type = props.type;
     const setType = props.setType;
     const setClothes = props.setClothes;
+    const orders = props.orders;
 
     return (
         <header>
-            <Logo setType={setType }/>
+            <Logo setType={setType}/>
             <Search type={type} setSearchQuery={setSearchQuery} setClothes={setClothes} />
-            <HeaderButtons itemCount={itemCount} />
+            <HeaderButtons itemCount={itemCount} orders={orders} />
         </header>
     );
 };

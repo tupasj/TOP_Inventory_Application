@@ -71,6 +71,7 @@ const App = () => {
           type={type}
           setType={setType}
           setClothes={setClothes}
+          orders={orders}
         />
       </UserContext.Provider>
       <Navigation setType={setType} />
