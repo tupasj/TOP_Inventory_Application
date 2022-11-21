@@ -17,9 +17,11 @@ const CartItems = (props) => {
 
     if (currentUser) {
       getUserCart(currentUser.email);
+    } else if (!currentUser) {
+      replaceOrders([]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentUser]);
 
   useEffect(() => {
     console.log("orders: ", orders);
