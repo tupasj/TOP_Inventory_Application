@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartRemoveOrderBtn } from "./CartRemoveOrderBtn";
 
-const CartItems = (props) => {
+const CartItems = () => {
   const { orders, modifyOrderQuantityOnChange } =
     useContext(CartContext);
 

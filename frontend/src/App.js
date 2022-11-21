@@ -62,7 +62,6 @@ const App = () => {
   useEffect(() => {
     const getUserCart = async (userEmail) => {
       const userCart = await ClothesAPI.getUserCart(userEmail);
-      console.log(userCart);
       replaceOrders(userCart);
     };
 
@@ -71,13 +70,11 @@ const App = () => {
     } else if (!currentUser) {
       replaceOrders([]);
     }
-    console.log("currentUser: ", currentUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
   useEffect(() => {
     const updateItemCount = () => {
-      console.log('updateItemCount()');
       const orderQuantities = orders.map((order) => order.quantity);
       const initialValue = 0;
       const overallQuantity = orderQuantities.reduce(
@@ -87,7 +84,6 @@ const App = () => {
       setItemCount(overallQuantity);
     }
     updateItemCount();
-    console.log('orders: ', orders);
   }, [orders]);
 
   return (
@@ -128,7 +124,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/cart" element={<Cart currentUser={currentUser} />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </CartContext.Provider>
       <LoginModal setCurrentUser={setCurrentUser} />

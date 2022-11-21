@@ -10,7 +10,7 @@ import ClothesAPI from "../../utils/api/ClothesAPI";
 
 const AddToCartButton = forwardRef(function (props, ref) {
   const productID = props.productID;
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const { orders, addOrder, replaceOrders } = useContext(CartContext);
   const urlParam = useParams();
 
@@ -33,15 +33,12 @@ const AddToCartButton = forwardRef(function (props, ref) {
     // Handle duplicate orders
     const isDuplicateOrder = checkDuplicateOrders(orders, productID);
     if (isDuplicateOrder) {
+      console.log('duplicate, adding: ', quantityToAdd);
       updateOrderQuantity(productID, quantityToAdd, orders, replaceOrders);
     } else {
       clothingItem.quantity = quantityToAdd;
+      console.log('!duplicate, adding: ', quantityToAdd);
       addOrder(clothingItem, currentUser);
-    }
-
-    if (currentUser) {
-      const updatedUser = await ClothesAPI.getUser(currentUser.email);
-      setCurrentUser(updatedUser);
     }
   };
 
