@@ -1,31 +1,10 @@
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-import ClothesAPI from "../../utils/api/ClothesAPI";
 import { CartRemoveOrderBtn } from "./CartRemoveOrderBtn";
 
 const CartItems = (props) => {
-  const { orders, replaceOrders, modifyOrderQuantityOnChange } =
+  const { orders, modifyOrderQuantityOnChange } =
     useContext(CartContext);
-  const currentUser = props.currentUser;
-
-  useEffect(() => {
-    const getUserCart = async (userEmail) => {
-      const userCart = await ClothesAPI.getUserCart(userEmail);
-      console.log(userCart);
-      replaceOrders(userCart);
-    };
-
-    if (currentUser) {
-      getUserCart(currentUser.email);
-    } else if (!currentUser) {
-      replaceOrders([]);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentUser]);
-
-  useEffect(() => {
-    console.log("orders: ", orders);
-  }, [orders]);
 
   return (
     <div className="cart-items">

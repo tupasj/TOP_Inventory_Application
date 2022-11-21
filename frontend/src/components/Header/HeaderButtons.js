@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { AccountDropdown } from "../UI/AccountDropdown";
 
 const HeaderButtons = (props) => {
   const [dropdownActive, setDropdownActive] = useState(false);
-  const [itemCount, setItemCount] = useState(0);
-  const orders = props.orders;
+  const itemCount = props.itemCount;
 
   const toggleDropdown = () => {
     if (dropdownActive) {
@@ -14,16 +13,6 @@ const HeaderButtons = (props) => {
       setDropdownActive(true);
     }
   };
-
-  useEffect(() => {
-    const orderQuantities = orders.map((order) => order.quantity);
-    const initialValue = 0;
-    const overallQuantity = orderQuantities.reduce(
-      (previousValue, currentValue) => previousValue + currentValue,
-      initialValue
-    );
-    setItemCount(overallQuantity);
-  }, [orders]);
 
   return (
     <div className="header-buttons">

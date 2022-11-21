@@ -9,6 +9,7 @@ import { SignupModal } from "./components/UI/SignupModal";
 import { Cart } from "./pages/Cart/Cart";
 import { UserContext } from "./context/UserContext";
 import { CartContext } from "./context/CartContext";
+import ClothesAPI from "./utils/api/ClothesAPI";
 
 const App = () => {
   const [itemCount, setItemCount] = useState(0);
@@ -59,8 +60,35 @@ const App = () => {
   };
 
   useEffect(() => {
+    const getUserCart = async (userEmail) => {
+      const userCart = await ClothesAPI.getUserCart(userEmail);
+      console.log(userCart);
+      replaceOrders(userCart);
+    };
+
+    if (currentUser) {
+      getUserCart(currentUser.email);
+    } else if (!currentUser) {
+      replaceOrders([]);
+    }
     console.log("currentUser: ", currentUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
+
+  useEffect(() => {
+    const updateItemCount = () => {
+      console.log('updateItemCount()');
+      const orderQuantities = orders.map((order) => order.quantity);
+      const initialValue = 0;
+      const overallQuantity = orderQuantities.reduce(
+        (previousValue, currentValue) => previousValue + currentValue,
+        initialValue
+      );
+      setItemCount(overallQuantity);
+    }
+    updateItemCount();
+    console.log('orders: ', orders);
+  }, [orders]);
 
   return (
     <HashRouter baseName="/TOP_Shopping_Cart">
