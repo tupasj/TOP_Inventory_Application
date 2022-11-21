@@ -1,22 +1,16 @@
 import { useContext } from "react";
-import { UsesRemoveOrderButtonContext } from "../../context/UsesRemoveOrderButtonContext";
+import { CartContext } from "../../context/CartContext";
 
 const CartRemoveOrderBtn = (props) => {
-  const { itemCount, setItemCount, removeOrder } = useContext(UsesRemoveOrderButtonContext)
   const id = props.id;
-  const inputDefaultVal = props.inputDefaultVal;
+  const { removeOrder } = useContext(CartContext);
 
-  const decrementItemCount = (value) => {
-    setItemCount(itemCount - value);
-  };
-
-  const deleteOrder = (id) => {
-    decrementItemCount(inputDefaultVal);
-    removeOrder(id.target.id);
+  const deleteOrder = () => {
+    removeOrder(id);
   };
 
   return (
-    <button id={id} className="order__remove-order" onClick={deleteOrder}>
+    <button className="order__remove-order" onClick={deleteOrder}>
       Remove from cart
     </button>
   );

@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import ClothesAPI from "../../utils/api/ClothesAPI";
+import { CartRemoveOrderBtn } from "./CartRemoveOrderBtn";
 
 const CartItems = (props) => {
   const { orders, replaceOrders, modifyOrderQuantityOnChange } =
@@ -59,6 +60,7 @@ const CartItems = (props) => {
                   }}
                 ></input>
               </div>
+              <CartRemoveOrderBtn id={order._id} />
             </div>
           );
         })

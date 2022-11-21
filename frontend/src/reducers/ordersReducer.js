@@ -18,7 +18,8 @@ const ordersReducer = (orders, action) => {
       //   auth.currentUser,
       //   orders.filter((order) => order.id !== action.id)
       // );
-      return orders.filter((order) => order.id !== action.id);
+      
+      return orders.filter((order) => order._id !== action.payload.id);
     }
     case "set": {
       // userWriteOrder(auth.currentUser, [...action.newOrders]);
