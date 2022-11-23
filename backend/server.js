@@ -10,6 +10,7 @@ const productViewRoutes = require("./routes/productViewRoutes");
 const resultsRoutes = require("./routes/resultsRoutes");
 const userRoutes = require("./routes/userRoutes");
 const { errorHandler } = require("./middleware/error");
+require("./models/user_cartItemModel");
 
 connectDatabase();
 

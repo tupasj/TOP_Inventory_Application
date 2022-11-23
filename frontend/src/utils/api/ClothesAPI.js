@@ -43,6 +43,7 @@ const verifyUserCredentials = async (email, password) => {
     );
     return userResponse.data[0];
   } catch (error) {
+    console.log("verifyUserCredentials() error");
     axiosErrorHandler(error);
   }
 };
@@ -54,26 +55,25 @@ const createUser = async (user) => {
 const addCartItem = async (userEmail, clothingItem, quantity) => {
   try {
     if (quantity) {
-      const cartItemOrder = {
-        userEmail,
+      const payload = {
         clothingItem,
         quantity,
       };
       await axios.post(
         `http://localhost:4000/user/email=${userEmail}`,
-        cartItemOrder
+        payload
       );
     } else {
-      const cartItemOrder = {
-        userEmail,
+      const payload = {
         clothingItem,
       };
       await axios.post(
         `http://localhost:4000/user/email=${userEmail}`,
-        cartItemOrder
+        payload
       );
     }
   } catch (error) {
+    console.log("addCartItem() error");
     axiosErrorHandler(error);
   }
 };
@@ -85,6 +85,7 @@ const getUser = async (userEmail) => {
     );
     return userResponse.data;
   } catch (error) {
+    console.log("getUser() error");
     axiosErrorHandler(error);
   }
 };
@@ -96,6 +97,19 @@ const getUserCart = async (userEmail) => {
     );
     return userCartResponse.data;
   } catch (error) {
+    console.log("getUserCart() error");
+    axiosErrorHandler(error);
+  }
+};
+
+const updateCartItem = async (updatedItem, userEmail) => {
+  try {
+    await axios.patch(
+      `http://localhost:4000/user/email=${userEmail}`,
+      updatedItem
+    );
+  } catch (error) {
+    console.log("updateCartItem() error");
     axiosErrorHandler(error);
   }
 };
@@ -109,6 +123,7 @@ const ClothesAPI = {
   addCartItem,
   getUser,
   getUserCart,
+  updateCartItem,
 };
 
 export default ClothesAPI;

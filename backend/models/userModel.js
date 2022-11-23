@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
-    cart: [{type: mongoose.Types.ObjectId, ref: "ClothingItem"}],
+    cart: [{type: mongoose.Types.ObjectId, ref: "User_CartItem"}],
     email: {
       type: String,
       unique: true,

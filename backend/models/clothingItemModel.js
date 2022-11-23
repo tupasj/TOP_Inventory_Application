@@ -19,10 +19,6 @@ const clothingItemSchema = mongoose.Schema(
       unique: true,
     },
     style: String,
-    quantity: {
-      type: Number,
-      default: 1,
-    },
   },
   {
     collection: "clothing",

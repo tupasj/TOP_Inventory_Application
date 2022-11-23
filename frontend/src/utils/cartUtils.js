@@ -20,6 +20,7 @@ const updateOrderQuantity = (
   const updatedOrder = { ...matchedOrder, quantity: updatedQuantity };
   mutatedOrders[matchedOrderIndex] = updatedOrder;
   setOrdersState([...mutatedOrders]);
+  return updatedOrder;
 };
 
 const calculateSubtotal = (ordersState, setSubtotalState) => {

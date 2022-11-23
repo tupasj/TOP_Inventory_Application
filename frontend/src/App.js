@@ -19,12 +19,13 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(false);
   const [orders, dispatch] = useReducer(ordersReducer, []);
 
-  const addOrder = (order, currentUser) => {
+  const addOrder = (currentUser, order, quantity) => {
     dispatch({
       type: "added",
       payload: {
-        newOrder: order,
         currentUser: currentUser,
+        newOrder: order,
+        quantity: quantity,
       },
     });
   };
@@ -49,6 +50,16 @@ const App = () => {
     });
   };
 
+  const updateOrder = (updatedOrder, currentUser) => {
+    dispatch({
+      type: "update",
+      payload: {
+        updatedOrder: updatedOrder,
+        currentUser: currentUser,
+      },
+    });
+  };
+
   const modifyOrderQuantityOnChange = (e, order) => {
     dispatch({
       type: "change quantity",
@@ -62,7 +73,9 @@ const App = () => {
   useEffect(() => {
     const getUserCart = async (userEmail) => {
       const userCart = await ClothesAPI.getUserCart(userEmail);
-      replaceOrders(userCart);
+      if (userCart.length >= 1) {
+        replaceOrders(userCart);
+      }
     };
 
     if (currentUser) {
@@ -70,6 +83,8 @@ const App = () => {
     } else if (!currentUser) {
       replaceOrders([]);
     }
+
+    console.log('currentUser: ', currentUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
@@ -82,8 +97,9 @@ const App = () => {
         initialValue
       );
       setItemCount(overallQuantity);
-    }
+    };
     updateItemCount();
+    console.log("orders: ", orders);
   }, [orders]);
 
   return (
@@ -105,6 +121,7 @@ const App = () => {
           addOrder,
           removeOrder,
           replaceOrders,
+          updateOrder,
           modifyOrderQuantityOnChange,
         }}
       >
