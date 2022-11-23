@@ -5,7 +5,6 @@ const ordersReducer = (orders, action) => {
   switch (action.type) {
     case "added": {
       if (action.payload.currentUser) {
-        console.log('action.payload: ', action.payload);
         ClothesAPI.addCartItem(
           action.payload.currentUser.email,
           action.payload.newOrder,
@@ -21,13 +20,19 @@ const ordersReducer = (orders, action) => {
       return [...action.payload.newOrders];
     }
     case "update": {
-      // Get quantity of updated order, backend updates the quantity of user.cart[i]._id that has the _id of updatedOrder
-      console.log('updateItem');
-      const updateItem = async (updatedOrder, currentUserEmail) => {
-        await ClothesAPI.updateCartItem(updatedOrder, currentUserEmail);
+      const updateItem = async (quantity, clothingItem, currentUser) => {
+        await ClothesAPI.updateCartItem(
+          quantity,
+          clothingItem,
+          currentUser.email
+        );
       };
       if (action.payload.currentUser) {
-        updateItem(action.payload.updatedOrder, action.payload.currentUser.email);
+        updateItem(
+          action.payload.quantity,
+          action.payload.orderToUpdate,
+          action.payload.currentUser
+        );
       }
     }
     case "change quantity": {

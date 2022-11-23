@@ -102,12 +102,13 @@ const getUserCart = async (userEmail) => {
   }
 };
 
-const updateCartItem = async (updatedItem, userEmail) => {
+const updateCartItem = async (quantity, clothingItem, userEmail) => {
   try {
-    await axios.patch(
-      `http://localhost:4000/user/email=${userEmail}`,
-      updatedItem
-    );
+    const payload = {
+      quantity,
+      clothingItem,
+    };
+    await axios.patch(`http://localhost:4000/user/email=${userEmail}`, payload);
   } catch (error) {
     console.log("updateCartItem() error");
     axiosErrorHandler(error);

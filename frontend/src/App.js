@@ -50,12 +50,13 @@ const App = () => {
     });
   };
 
-  const updateOrder = (updatedOrder, currentUser) => {
+  const updateOrder = (quantity, orderToUpdate, currentUser) => {
     dispatch({
       type: "update",
       payload: {
-        updatedOrder: updatedOrder,
-        currentUser: currentUser,
+        quantity,
+        orderToUpdate,
+        currentUser
       },
     });
   };

@@ -1,6 +1,6 @@
 const checkDuplicateOrders = (ordersArray, ProductID) => {
   for (let i = 0; i < ordersArray.length; i++) {
-    if (ordersArray[i]._id === ProductID) {
+    if (ordersArray[i].clothingItem._id === ProductID) {
       return true;
     }
   }
