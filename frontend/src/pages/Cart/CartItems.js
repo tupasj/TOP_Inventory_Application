@@ -11,20 +11,20 @@ const CartItems = () => {
       {orders[0] ? (
         orders.map((order) => {
           return (
-            <div key={order._id} className="order">
-              <img className="order__img" src={order.src} alt={order.alt}></img>
+            <div key={order.clothingItem._id} className="order">
+              <img className="order__img" src={order.clothingItem.src} alt={order.clothingItem.alt}></img>
               <div className="order__info">
-                <span className="order__name">{order.name}</span>
+                <span className="order__name">{order.clothingItem.name}</span>
                 <span className="order__price">
-                  {order.salePrice ? (
+                  {order.clothingItem.salePrice ? (
                     <>
-                      ${order.salePrice}
+                      ${order.clothingItem.salePrice}
                       <span className="order__price--line-through">
-                        ${order.price}
+                        ${order.clothingItem.price}
                       </span>
                     </>
                   ) : (
-                    <span>${order.price}</span>
+                    <span>${order.clothingItem.price}</span>
                   )}
                 </span>
                 <label htmlFor="order__quantity">Quantity: </label>
@@ -41,7 +41,7 @@ const CartItems = () => {
                   }}
                 ></input>
               </div>
-              <CartRemoveOrderBtn id={order._id} />
+              <CartRemoveOrderBtn id={order.clothingItem._id} />
             </div>
           );
         })

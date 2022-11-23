@@ -8,8 +8,15 @@ import ClothesAPI from "../../utils/api/ClothesAPI";
 const AddToCartButton = forwardRef(function (props, ref) {
   const productID = props.productID;
   const { currentUser } = useContext(UserContext);
-  const { orders, addOrder, updateOrder } = useContext(CartContext);
+  const { orders, addOrder, replaceOrders, updateOrder } = useContext(CartContext);
   const urlParam = useParams();
+
+  const getUserCart = async (userEmail) => {
+    const userCart = await ClothesAPI.getUserCart(userEmail);
+    if (userCart.length >= 1) {
+      replaceOrders(userCart);
+    }
+  };
 
   const updateCart = async () => {
     let clothingItem;
@@ -38,6 +45,8 @@ const AddToCartButton = forwardRef(function (props, ref) {
         addOrder(currentUser, clothingItem, quantity);
       }
     }
+
+    getUserCart(currentUser.email);
   };
 
   return (

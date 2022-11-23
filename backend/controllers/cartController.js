@@ -24,6 +24,7 @@ const addCartItem = async (req, res, userEmail) => {
 const getUserCart = async (req, res, userEmail) => {
   const user = await User.findOne({ email: userEmail });
   let populatedCartItems = [];
+
   for (let i = 0; i < user.cart.length; i++) {
     const populatedCartItem = await CartItem.findById(
       user.cart[i]._id

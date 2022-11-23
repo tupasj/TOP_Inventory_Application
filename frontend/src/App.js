@@ -71,14 +71,14 @@ const App = () => {
     });
   };
 
+  const getUserCart = async (userEmail) => {
+    const userCart = await ClothesAPI.getUserCart(userEmail);
+    if (userCart.length >= 1) {
+      replaceOrders(userCart);
+    }
+  };
+  
   useEffect(() => {
-    const getUserCart = async (userEmail) => {
-      const userCart = await ClothesAPI.getUserCart(userEmail);
-      if (userCart.length >= 1) {
-        replaceOrders(userCart);
-      }
-    };
-
     if (currentUser) {
       getUserCart(currentUser.email);
     } else if (!currentUser) {
@@ -100,7 +100,9 @@ const App = () => {
       setItemCount(overallQuantity);
     };
     updateItemCount();
+
     console.log("orders: ", orders);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders]);
 
   return (

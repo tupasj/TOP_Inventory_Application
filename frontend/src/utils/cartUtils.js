@@ -26,12 +26,12 @@ const updateOrderQuantity = (
 const calculateSubtotal = (ordersState, setSubtotalState) => {
   let accumulatorValue = 0;
   for (let i = 0; i < ordersState.length; i++) {
-    const hasSalePrice = ordersState[i].salePrice ? true : false;
+    const hasSalePrice = ordersState[i].clothingItem.salePrice ? true : false;
     let productPrice;
     if (hasSalePrice) {
-      productPrice = ordersState[i].salePrice;
+      productPrice = ordersState[i].clothingItem.salePrice;
     } else {
-      productPrice = ordersState[i].price;
+      productPrice = ordersState[i].clothingItem.price;
     }
     const productQuantity = ordersState[i].quantity;
     const orderCost = productPrice * productQuantity;
