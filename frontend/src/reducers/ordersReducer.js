@@ -11,22 +11,21 @@ const ordersReducer = (orders, action) => {
           action.payload.newOrder,
           action.payload.quantity
         );
-      } else {
-        const cartItem = {
-          clothingItem: action.payload.newOrder,
-          quantity: action.payload.quantity ? action.payload.quantity : 1,
-        };
-        return [...orders, cartItem];
       }
+      const cartItem = {
+        clothingItem: action.payload.newOrder,
+        quantity: action.payload.quantity ? action.payload.quantity : 1,
+      };
+      return [...orders, cartItem];
     }
     case "deleted": {
       if (action.payload.currentUser) {
-        // ClothesAPI.deleteCartItem(currentUser, cartItemID)
-      } else {
-        return orders.filter(
-          (order) => order.clothingItem._id !== action.payload.id
+        ClothesAPI.deleteCartItem(
+          action.payload.currentUser.email,
+          action.payload.id
         );
       }
+      return orders.filter((order) => order._id !== action.payload.id);
     }
     case "set": {
       return [...action.payload.newOrders];

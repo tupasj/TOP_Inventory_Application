@@ -2,11 +2,12 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 const CartRemoveOrderBtn = (props) => {
-  const orderID = props.orderID;
   const { removeOrder } = useContext(CartContext);
+  const orderID = props.orderID;
+  const currentUser = props.currentUser;
 
   const deleteOrder = () => {
-    removeOrder(orderID);
+    removeOrder(orderID, currentUser);
   };
 
   return (

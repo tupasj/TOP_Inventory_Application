@@ -56,7 +56,7 @@ const App = () => {
       payload: {
         quantity,
         orderToUpdate,
-        currentUser
+        currentUser,
       },
     });
   };
@@ -77,7 +77,7 @@ const App = () => {
       replaceOrders(userCart);
     }
   };
-  
+
   useEffect(() => {
     if (currentUser) {
       getUserCart(currentUser.email);
@@ -85,7 +85,7 @@ const App = () => {
       replaceOrders([]);
     }
 
-    console.log('currentUser: ', currentUser);
+    console.log("currentUser: ", currentUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
@@ -102,7 +102,7 @@ const App = () => {
     updateItemCount();
 
     console.log("orders: ", orders);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders]);
 
   return (
@@ -144,7 +144,7 @@ const App = () => {
               />
             }
           />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/cart" element={<Cart currentUser={currentUser} />} />
         </Routes>
       </CartContext.Provider>
       <LoginModal setCurrentUser={setCurrentUser} />

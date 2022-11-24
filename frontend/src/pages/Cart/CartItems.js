@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import { CartRemoveOrderBtn } from "./CartRemoveOrderBtn";
 
-const CartItems = () => {
-  const { orders, modifyOrderQuantityOnChange } =
-    useContext(CartContext);
+const CartItems = (props) => {
+  const { orders, modifyOrderQuantityOnChange } = useContext(CartContext);
+  const currentUser = props.currentUser;
 
   return (
     <div className="cart-items">
@@ -12,7 +12,11 @@ const CartItems = () => {
         orders.map((order) => {
           return (
             <div key={order.clothingItem._id} className="order">
-              <img className="order__img" src={order.clothingItem.src} alt={order.clothingItem.alt}></img>
+              <img
+                className="order__img"
+                src={order.clothingItem.src}
+                alt={order.clothingItem.alt}
+              ></img>
               <div className="order__info">
                 <span className="order__name">{order.clothingItem.name}</span>
                 <span className="order__price">
@@ -41,7 +45,10 @@ const CartItems = () => {
                   }}
                 ></input>
               </div>
-              <CartRemoveOrderBtn orderID={order.clothingItem._id} />
+              <CartRemoveOrderBtn
+                orderID={order._id}
+                currentUser={currentUser}
+              />
             </div>
           );
         })

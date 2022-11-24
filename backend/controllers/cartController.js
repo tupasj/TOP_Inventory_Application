@@ -64,23 +64,31 @@ const updateUserCartItem = async (req, res, userEmail) => {
 
 const deleteCartItem = async (req, res, userEmail) => {
   const user = await User.findOne({ email: userEmail });
-  const cartItemIDToDelete = req.body.data;
-  console.log('cartItemIDToDelete: ', cartItemIDToDelete);
-
-  // Delete user cart item
-  for (let i = 0; i < user.cart.length; i++) {
-    const userCartItemID = user.cart[i]._id.toString();
-
-  }
-  // Delete cart item
+  const cartItemIDToDelete = req.body.cartItemID;
 
   try {
-
-    res.status(200).json();
+    // Delete user cart item
+    for (let i = 0; i < user.cart.length; i++) {
+      const stringifiedCartItemID = user.cart[i]._id.toString();
+      if (stringifiedCartItemID === cartItemIDToDelete) {
+        user.cart.splice(i, 1);
+        await user.save();
+        await CartItem.deleteOne({_id: cartItemIDToDelete});
+      }
+    }
+    // Delete cart item
+    // for (let i = 0; i < user.cart.length; i++) {
+    //   if (user.cart[i].clothingItem._id === cartItemIDToDelete) {
+    //     console.log("deleting user cart item");
+    //     await User.deleteOne({ _id: cartItemIDToDelete });
+    //     break;
+    //   }
+    // }
+    res.status(200);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-}
+};
 
 module.exports = {
   addCartItem,
