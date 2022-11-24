@@ -9,6 +9,7 @@ const {
   addCartItem,
   getUserCart,
   updateUserCartItem,
+  deleteCartItem,
 } = require("../controllers/cartController");
 
 router.route("/email=:email/password=:password").get((req, res) => {
@@ -25,6 +26,9 @@ router
   })
   .patch((req, res) => {
     updateUserCartItem(req, res, req.params.userEmail);
+  })
+  .delete((req, res) => {
+    deleteCartItem(req, res, req.params.userEmail);
   });
 router.route("/email=:userEmail/user-cart").get((req, res) => {
   getUserCart(req, res, req.params.userEmail);

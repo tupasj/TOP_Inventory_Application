@@ -115,6 +115,17 @@ const updateCartItem = async (quantity, clothingItem, userEmail) => {
   }
 };
 
+const deleteCartItem = async (userEmail, cartItemID) => {
+  try {
+    await axios.delete(`http://localhost:4000/user/email=${userEmail}`, {
+      data: { cartItemID },
+    });
+  } catch (error) {
+    console.log("deleteCartItem() error");
+    axiosErrorHandler(error);
+  }
+};
+
 const ClothesAPI = {
   getClothesByType,
   getSelectedProduct,
@@ -125,6 +136,7 @@ const ClothesAPI = {
   getUser,
   getUserCart,
   updateCartItem,
+  deleteCartItem,
 };
 
 export default ClothesAPI;

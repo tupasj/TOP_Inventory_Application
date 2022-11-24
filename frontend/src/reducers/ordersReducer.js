@@ -1,5 +1,6 @@
 /* eslint-disable no-fallthrough */
 import ClothesAPI from "../utils/api/ClothesAPI";
+import { updateOrderQuantity } from "../utils/cartUtils";
 
 const ordersReducer = (orders, action) => {
   switch (action.type) {
@@ -10,11 +11,22 @@ const ordersReducer = (orders, action) => {
           action.payload.newOrder,
           action.payload.quantity
         );
+      } else {
+        const cartItem = {
+          clothingItem: action.payload.newOrder,
+          quantity: action.payload.quantity ? action.payload.quantity : 1,
+        };
+        return [...orders, cartItem];
       }
-      return [...orders, action.payload.newOrder];
     }
     case "deleted": {
-      return orders.filter((order) => order._id !== action.payload.id);
+      if (action.payload.currentUser) {
+        // ClothesAPI.deleteCartItem(currentUser, cartItemID)
+      } else {
+        return orders.filter(
+          (order) => order.clothingItem._id !== action.payload.id
+        );
+      }
     }
     case "set": {
       return [...action.payload.newOrders];
@@ -33,6 +45,13 @@ const ordersReducer = (orders, action) => {
           action.payload.orderToUpdate,
           action.payload.currentUser
         );
+      } else {
+        const updatedOrders = updateOrderQuantity(
+          action.payload.orderToUpdate._id,
+          action.payload.quantity,
+          orders
+        );
+        return updatedOrders;
       }
     }
     case "change quantity": {

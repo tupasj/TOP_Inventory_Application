@@ -11,16 +11,14 @@ const updateOrderQuantity = (
   orderID,
   quantityToAdd,
   ordersState,
-  setOrdersState
 ) => {
-  const mutatedOrders = [...ordersState];
-  const matchedOrder = mutatedOrders.find((order) => order._id === orderID);
-  const matchedOrderIndex = mutatedOrders.indexOf(matchedOrder);
-  const updatedQuantity = (matchedOrder.quantity += quantityToAdd);
+  const ordersStateCopy = [...ordersState];
+  const matchedOrder = ordersStateCopy.find((order) => order.clothingItem._id === orderID);
+  const matchedOrderIndex = ordersStateCopy.indexOf(matchedOrder);
+  const updatedQuantity = ordersState[matchedOrderIndex].quantity += quantityToAdd;
   const updatedOrder = { ...matchedOrder, quantity: updatedQuantity };
-  mutatedOrders[matchedOrderIndex] = updatedOrder;
-  setOrdersState([...mutatedOrders]);
-  return updatedOrder;
+  ordersStateCopy[matchedOrderIndex] = updatedOrder;
+  return [...ordersStateCopy];
 };
 
 const calculateSubtotal = (ordersState, setSubtotalState) => {

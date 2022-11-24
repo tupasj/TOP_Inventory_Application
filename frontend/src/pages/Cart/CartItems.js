@@ -41,7 +41,7 @@ const CartItems = () => {
                   }}
                 ></input>
               </div>
-              <CartRemoveOrderBtn id={order.clothingItem._id} />
+              <CartRemoveOrderBtn orderID={order.clothingItem._id} />
             </div>
           );
         })

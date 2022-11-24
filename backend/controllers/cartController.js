@@ -62,8 +62,29 @@ const updateUserCartItem = async (req, res, userEmail) => {
   }
 };
 
+const deleteCartItem = async (req, res, userEmail) => {
+  const user = await User.findOne({ email: userEmail });
+  const cartItemIDToDelete = req.body.data;
+  console.log('cartItemIDToDelete: ', cartItemIDToDelete);
+
+  // Delete user cart item
+  for (let i = 0; i < user.cart.length; i++) {
+    const userCartItemID = user.cart[i]._id.toString();
+
+  }
+  // Delete cart item
+
+  try {
+
+    res.status(200).json();
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+
 module.exports = {
   addCartItem,
   getUserCart,
   updateUserCartItem,
+  deleteCartItem,
 };
