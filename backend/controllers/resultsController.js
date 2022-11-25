@@ -1,6 +1,5 @@
-const clothingItemModelFile = require("../models/clothingItemModel");
+const ClothingItem = require("../models/clothingItemModel");
 const { getQueryByType } = require("../utils/clothingUtils");
-const ClothingItem = clothingItemModelFile.clothingItemModel;
 
 const getProductSearchResults = async (req, res, searchValue, type) => {
   const searchValueRegex = new RegExp(searchValue, "i");

@@ -23,17 +23,10 @@ const getSelectedProduct = async (productID) => {
 };
 
 const getSearchedProducts = async (searchValue, type) => {
-  if (type) {
-    const searchedProductResponse = await axios.get(
-      `http://localhost:4000/results/search_query=${searchValue}/${type}`
-    );
-    return searchedProductResponse.data;
-  } else {
-    const searchedProductResponse = await axios.get(
-      `http://localhost:4000/results/search_query=${searchValue}`
-    );
-    return searchedProductResponse.data;
-  }
+  const searchedProductResponse = await axios.get(
+    `http://localhost:4000/results/search_query=${searchValue}/${type}`
+  );
+  return searchedProductResponse.data;
 };
 
 const verifyUserCredentials = async (email, password) => {

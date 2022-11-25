@@ -35,6 +35,10 @@ const Main = (props) => {
     getClothesByType(type);
   }, [type]);
 
+  useEffect(() => {
+    console.log('filter: ', filter);
+  }, [filter]);
+
   return (
     <main className="products-view">
       <Filter filter={filter} setFilter={setFilter} setRemovedFilter={setRemovedFilter} />

@@ -2,6 +2,8 @@ const ClothingItem = require("../models/clothingItemModel");
 
 const getQueryByType = (type) => {
   switch (type) {
+    case "all":
+      return {};
     case "men":
       return { gender: "male" };
     case "women":

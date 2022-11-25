@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { capitalizeFirstLetter } from "../../utils/stringUtils";
+import { FilterInputGroup } from "./FilterInputGroup";
 
 const FilterDropdown = (props) => {
   const title = props.title;
   const items = props.items;
   const currency = props.currency;
   const handleInput = props.handleInput;
+  const filter = props.filter;
+  const setFilter = props.setFilter;
   const [dropdownActive, setDropdownActive] = useState(false);
 
   const toggleDropdown = () => {
@@ -28,23 +30,14 @@ const FilterDropdown = (props) => {
       </span>
       {dropdownActive && (
         <div className="category__dropdown">
-          {items.map((item) => {
-            return (
-              <div className="category__dropdown__item" key={item}>
-                <input
-                  type="checkbox"
-                  id={item}
-                  name={item}
-                  value={item}
-                  onChange={handleInput}
-                ></input>
-                <label htmlFor={item}>
-                  {currency && "$"}
-                  {capitalizeFirstLetter(item)}
-                </label>
-              </div>
-            );
-          })}
+          <FilterInputGroup
+            title={title}
+            items={items}
+            currency={currency}
+            handleInput={handleInput}
+            filter={filter}
+            setFilter={setFilter}
+          />
         </div>
       )}
     </>

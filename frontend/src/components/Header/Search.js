@@ -33,13 +33,8 @@ const Search = (props) => {
     if (e.key === "Enter" || e.type !== "keydown") {
       if (searchValue !== "" && typeof searchValue !== "number") {
         setSearchQuery(searchValue);
-        if (type) {
-          navigate(`/results/search_query=${searchValue}&type=${type}`);
-          getSearchedProducts(searchValue, type);
-        } else {
-          navigate(`/results/search_query=${searchValue}`);
-          getSearchedProducts(searchValue);
-        }
+        navigate(`/results/search_query=${searchValue}&type=${type}`);
+        getSearchedProducts(searchValue, type);
       }
     }
   };

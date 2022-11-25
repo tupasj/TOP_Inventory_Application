@@ -63,7 +63,8 @@ form > label > input {
   padding: 5px;
 }
 
-.login-modal, .signup-modal {
+.login-modal,
+.signup-modal {
   width: 420px;
   border: 0;
   border-radius: 4px;
@@ -96,7 +97,8 @@ form > label {
   color: var(--red);
 }
 
-.login-modal-message, .signup-modal-message {
+.login-modal-message,
+.signup-modal-message {
   padding-left: 50px;
   padding-right: 50px;
   text-align: center;
@@ -124,7 +126,8 @@ form > label {
   cursor: pointer;
 }
 
-.login-button:hover, .signup-button:hover {
+.login-button:hover,
+.signup-button:hover {
   border-color: #e6bd93;
   background-color: #e6bd93;
 }
@@ -354,6 +357,15 @@ nav > a:hover {
 .products {
   display: flex;
   flex-wrap: wrap;
+}
+
+.clear-filter-btn {
+  background-color: lightgray;
+  border: none;
+  padding: 2px 4px 2px 4px;
+  border-radius: 4px;
+  width: 100%;
+  margin: 4px;
 }
 
 /* Product */

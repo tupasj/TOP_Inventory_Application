@@ -14,7 +14,7 @@ import ClothesAPI from "./utils/api/ClothesAPI";
 const App = () => {
   const [itemCount, setItemCount] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("all");
   const [clothes, setClothes] = useState([]);
   const [currentUser, setCurrentUser] = useState(false);
   const [orders, dispatch] = useReducer(ordersReducer, []);

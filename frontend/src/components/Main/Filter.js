@@ -3,21 +3,9 @@ import { FilterDropdown } from "./FilterDropdown";
 const Filter = (props) => {
   const filter = props.filter;
   const setFilter = props.setFilter;
-  const setRemovedFilter = props.setRemovedFilter;
 
   const handleInput = (e) => {
-    const clickedFilter = e.target.value;
-    const checked = e.target.checked;
-    if (checked) {
-      setRemovedFilter(true);
-      setFilter([...filter, clickedFilter]);
-    } else if (!checked) {
-      const removedFilterArray = filter.filter(
-        (element) => element !== clickedFilter
-      );
-      setRemovedFilter(false);
-      setFilter(removedFilterArray);
-    }
+      setFilter([...filter, e.target.value]);
   };
 
   const categories = [
@@ -54,6 +42,8 @@ const Filter = (props) => {
               items={category.items}
               currency={category.currency}
               handleInput={handleInput}
+              filter={filter}
+              setFilter={setFilter}
             />
           </div>
         );
