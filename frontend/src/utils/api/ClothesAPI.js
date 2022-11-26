@@ -1,5 +1,6 @@
 import axios from "axios";
 import { axiosErrorHandler } from "../errors";
+import { makeFilterQueryParamsString } from "../filterUtils";
 
 const getClothesByType = async (clothesType) => {
   if (clothesType === "all") {
@@ -13,6 +14,12 @@ const getClothesByType = async (clothesType) => {
     );
     return clothesByTypeResponse.data;
   }
+};
+
+const getFilteredProducts = async (filter) => {
+  const filterQueryParamsString = makeFilterQueryParamsString(filter);
+  const filteredProductsResponse = await axios.get(filterQueryParamsString);
+  return filteredProductsResponse.data;
 };
 
 const getSelectedProduct = async (productID) => {
@@ -121,6 +128,7 @@ const deleteCartItem = async (userEmail, cartItemID) => {
 
 const ClothesAPI = {
   getClothesByType,
+  getFilteredProducts,
   getSelectedProduct,
   getSearchedProducts,
   verifyUserCredentials,

@@ -7,3 +7,8 @@ Content-Type: application/json
     "password": "1234abcd",
     "profilePicture": "https://github.com/tupasj/TOP_Shopping_Cart/blob/main/src/assets/images/MensClothing/black-suit.jpg"
 }
+
+###
+
+GET http://localhost:4000/products/filter?category=tops&style=casual&rating=4&price=125
+

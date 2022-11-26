@@ -36,6 +36,11 @@ const Main = (props) => {
   }, [type]);
 
   useEffect(() => {
+    const getFilteredProducts = async (filter) => {
+      const filteredProducts = await ClothesAPI.getFilteredProducts(filter);
+      setClothes(filteredProducts);
+    }
+    getFilteredProducts(filter);
     console.log('filter: ', filter);
   }, [filter]);
 
