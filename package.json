@@ -4,6 +4,9 @@
   "description": "A demo E-commerce site with full CRUD functionality, built with the MERN stack. Part of The Odin Project full-stack curriculum.",
   "main": "index.js",
   "scripts": {
+    "client": "cd frontend && npm run start",
+    "server": "cd backend && node server.js",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/tupasj/TOP_Inventory_Application/issues"
   },
-  "homepage": "https://github.com/tupasj/TOP_Inventory_Application#readme"
+  "homepage": "https://github.com/tupasj/TOP_Inventory_Application#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
 }
