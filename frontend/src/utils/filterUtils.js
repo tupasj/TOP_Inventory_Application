@@ -84,7 +84,7 @@ const makeFilterQueryParamsString = (filterArray) => {
 
   const queryParamsObject = makeQueryParamsObject(filterArray);
 
-  let filterQueryParamsString = "http://localhost:4000/products/filter?";
+  let filterQueryParamsString = "https://top-inventory-application.up.railway.app/products/filter?";
   for (const property in queryParamsObject) {
     filterQueryParamsString += `${property}=${queryParamsObject[property]}&`;
   }
