@@ -25,7 +25,7 @@ const ordersReducer = (orders, action) => {
           action.payload.id
         );
       }
-      return orders.filter((order) => order._id !== action.payload.id);
+      return orders.filter((order) => order.clothingItem._id !== action.payload.id);
     }
     case "set": {
       return [...action.payload.newOrders];

@@ -7,6 +7,7 @@ const CartRemoveOrderBtn = (props) => {
   const currentUser = props.currentUser;
 
   const deleteOrder = () => {
+    console.log('orderID: ', orderID);
     removeOrder(orderID, currentUser);
   };
 

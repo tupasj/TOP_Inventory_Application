@@ -48,7 +48,7 @@ const CartItems = (props) => {
                 ></input>
               </div>
               <CartRemoveOrderBtn
-                orderID={order._id}
+                orderID={order.clothingItem._id}
                 currentUser={currentUser}
               />
             </div>
