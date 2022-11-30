@@ -11,19 +11,20 @@ const CartItems = (props) => {
       {orders[0] ? (
         orders.map((order) => {
           return (
-            <div key={order.clothingItem._id} className="order">
+            <div key={order.clothingItem._id} className="flex justify-around items-center
+            rounded-lg my-2 py-5 pl-2 bg-[#fff]">
               <img
-                className="order__img"
+                className="h-[400px] w-[275px]"
                 src={order.clothingItem.src}
                 alt={order.clothingItem.alt}
               ></img>
-              <div className="order__info">
+              <div className="flex flex-col gap-4 mx-3 my-2">
                 <span className="order__name">{order.clothingItem.name}</span>
                 <span className="order__price">
                   {order.clothingItem.salePrice ? (
                     <>
                       ${order.clothingItem.salePrice}
-                      <span className="order__price--line-through">
+                      <span className="ml-1 line-through text-xs opacity-50">
                         ${order.clothingItem.price}
                       </span>
                     </>
@@ -33,7 +34,8 @@ const CartItems = (props) => {
                 </span>
                 <label htmlFor="order__quantity">Quantity: </label>
                 <input
-                  className="input__quantity"
+                  className="rounded border-[1px] border-black/25 p-1
+                  bg-slate-light-gray"
                   type="number"
                   id="order__quantity"
                   name="order__quantity"

@@ -6,27 +6,27 @@ const Products = (props) => {
   const products = props.products;
 
   return (
-    <div className="products">
+    <div className="flex flex-wrap">
       {products[0] &&
         products.map((product) => {
           return (
             <div key={product._id} className="product">
               <Link to={`/product-view/${product._id}`}>
                 <img
-                  className="product__image"
+                  className="w-full h-[375px]"
                   src={product.src}
                   alt={product.alt}
                 ></img>
               </Link>
-              <div className="product__name">{product.name}</div>
-              <div className="product__rating">
+              <div className="my-1 text-center">{product.name}</div>
+              <div className="my-1 text-center">
                 <Rating rating={product.rating} />
               </div>
-              <div className="product__price">
+              <div className="my-1 text-center">
                 {product.salePrice ? (
                   <>
                     ${product.salePrice}
-                    <span className="product__price--line-through">
+                    <span className="ml-1 line-through text-xs opacity-50">
                       ${product.price}
                     </span>
                   </>
@@ -34,7 +34,7 @@ const Products = (props) => {
                   <span>${product.price}</span>
                 )}
               </div>
-              <div className="product__buttons">
+              <div className="mt-2 mb-3 flex justify-center">
                 <AddToCartButton productID={product._id} />
               </div>
             </div>

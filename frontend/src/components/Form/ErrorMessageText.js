@@ -1,6 +1,6 @@
 const ErrorMessageText = (props) => {
     return (
-        <div className="form-error">
+        <div className="m-0.5 text-red">
             {props.children}
         </div>
     )

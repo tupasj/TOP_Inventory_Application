@@ -33,7 +33,7 @@ const Filter = (props) => {
   ];
 
   return (
-    <div className="category-filter">
+    <div className="p-3">
       {categories.map((category) => {
         return (
           <div className="category" key={category.title}>

@@ -11,7 +11,8 @@ const CartRemoveOrderBtn = (props) => {
   };
 
   return (
-    <button className="order__remove-order" onClick={deleteOrder}>
+    <button className="px-2 py-1 bg-peach-light border-[1px] 
+    border-peach-dark rounded-xl cursor-pointer" onClick={deleteOrder}>
       Remove from cart
     </button>
   );

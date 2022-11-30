@@ -52,20 +52,33 @@ const SignupForm = () => {
             successfulSignupNotice();
           }}
         >
-          <Form>
+          <Form className="flex flex-col items-center gap-[15px] text-center">
             <div className="form-control">
               <label htmlFor="name" />
-              <Field type="text" id="name" name="name" placeholder="Name" />
+              <Field
+                className="form-input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+              />
               <ErrorMessage name="name" component={ErrorMessageText} />
             </div>
             <div className="form-control">
               <label htmlFor="email" />
-              <Field type="email" id="email" name="email" placeholder="Email" />
+              <Field
+                className="form-input"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+              />
               <ErrorMessage name="email" component={ErrorMessageText} />
             </div>
             <div className="form-control">
               <label htmlFor="password" />
               <Field
+                className="form-input"
                 type="password"
                 id="password"
                 name="password"
@@ -73,9 +86,9 @@ const SignupForm = () => {
               />
               <ErrorMessage name="password" component={ErrorMessageText} />
             </div>
-            <div className="password-message"></div>
+            <div className="password-message hidden text-red"></div>
             <button
-              className="signup-button"
+              className="p-1 w-3/4 rounded-md bg-peach-light hover:bg-peach-dark"
               type="submit"
               onClick={() => (validationActive = true)}
             >

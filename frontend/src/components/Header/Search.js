@@ -40,18 +40,22 @@ const Search = (props) => {
   };
 
   return (
-    <div className="search-bar">
-      <button className="search-bar__submit-button" onClick={handleSubmit}>
+    <div className="inline-block bg-slate-light-gray rounded-lg relative">
+      <button
+        className="px-1 mt-[2px] border-0 rounded-lg bg-slate-light-gray"
+        onClick={handleSubmit}
+      >
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
       <input
-        className="search-bar__input"
+        className="pl-1 border-0 rounded-lg bg-slate-light-gray
+        focus-visible:outline-none"
         type="text"
         placeholder="Search for a product"
         onChange={handleChange}
         onKeyDown={handleSubmit}
       ></input>
-      <div className="search-bar__divider"></div>
+      <div className="absolute ml-1 top-0 left-5 w-[2px] h-[27px] bg-black opacity-10"></div>
     </div>
   );
 };
