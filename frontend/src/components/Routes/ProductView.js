@@ -22,21 +22,20 @@ const ProductView = () => {
   }, []);
 
   return (
-    <div className="product-view">
-      <div className="product-view__main">
+    <div className="pt-[5%]">
+      <div className="product-view-main">
         <img
-          className="product-view__img"
+          className="w-auto h-[500px]"
           src={selectedProduct.src}
           alt={selectedProduct.alt}
         ></img>
-        <div className="product-view__buttons-container">
-          <span className="product-view__product-name">
-            {selectedProduct.name}
-          </span>
-          <div className="product-view__quantity-input-container">
+        <div className="flex flex-col items-center justify-center gap-12">
+          <span className="block font-bold">{selectedProduct.name}</span>
+          <div className="flex flex-col gap-2 text-center">
             <label htmlFor="quantity">Quantity: </label>
             <input
-              className="input__quantity"
+              className="rounded border-[1px] border-black/25 p-1
+              bg-slate-light-gray"
               ref={quantityRef}
               type="number"
               id="quantity"
@@ -45,8 +44,9 @@ const ProductView = () => {
               max="100"
             ></input>
           </div>
-          <div className="product-view__buttons">
+          <div className="mt-7">
             <AddToCartButton
+              className="mx-1"
               ref={quantityRef}
               productID={urlParam.paramId}
               itemCount={itemCount}
@@ -55,9 +55,9 @@ const ProductView = () => {
           </div>
         </div>
       </div>
-      <div className="product-view__details">
-        <span className="product-view__title">Product Details</span>
-        <p className="product-view__description">
+      <div className="pl-[6%] pt-[2%]">
+        <span className="block mb-3 font-bold">Product Details</span>
+        <p className="mb-2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Nunc
           aliquet bibendum enim facilisis gravida neque convallis. At
@@ -69,7 +69,7 @@ const ProductView = () => {
           semper feugiat. Dui accumsan sit amet nulla facilisi morbi tempus.
           Euismod quis viverra nibh cras pulvinar.
         </p>
-        <ul className="product-view__bullets">
+        <ul className="pl-0 list-disc list-inside">
           <li>Bullet 1</li>
           <li>Bullet 2</li>
           <li>Bullet 3</li>

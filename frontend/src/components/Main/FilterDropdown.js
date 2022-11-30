@@ -21,7 +21,7 @@ const FilterDropdown = (props) => {
   return (
     <>
       <span className="category__text">{title}</span>
-      <span className="category__plus" onClick={toggleDropdown}>
+      <span className="cursor-pointer" onClick={toggleDropdown}>
         {dropdownActive ? (
           <i className="fa-solid fa-minus"></i>
         ) : (

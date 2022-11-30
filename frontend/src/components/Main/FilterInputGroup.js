@@ -40,8 +40,9 @@ const FilterInputGroup = (props) => {
     <>
       {items.map((item) => {
         return (
-          <div className="category__dropdown__item" key={item}>
+          <div className="font-normal" key={item}>
             <input
+              className="mr-1"
               type="radio"
               id={item}
               name={title}
@@ -55,7 +56,12 @@ const FilterInputGroup = (props) => {
           </div>
         );
       })}
-      <button className="clear-filter-btn" onClick={clearInput}>Clear filter</button>
+      <button
+        className="bg-[rgb(229,231,235)] border-0 px-2 py-1 m-1 rounded w-full"
+        onClick={clearInput}
+      >
+        Clear filter
+      </button>
     </>
   );
 };

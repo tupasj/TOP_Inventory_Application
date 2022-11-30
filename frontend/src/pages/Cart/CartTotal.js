@@ -11,12 +11,20 @@ const CartTotal = () => {
   }, [orders]);
 
   return (
-    <div className="cart__total">
-      <div className="cart__subtotal__container">
-        <div className="cart__subtotal__title">Subtotal:</div>
-        <div className="cart__subtotal__value">${subtotal}.00</div>
+    <div
+      className="bg-[#fff] rounded my-1 px-2 py-4 text-center flex flex-col
+    justify-center items-center gap-3"
+    >
+      <div>
+        <div className="mb-1">Subtotal:</div>
+        <div className="mt-1 text-xl font-bold">${subtotal}.00</div>
       </div>
-      <button className="cart__checkout-button">Proceed to checkout</button>
+      <button
+        className="px-2 py-1 bg-peach-light border-[1px] 
+      border-peach-dark rounded-xl cursor-pointer"
+      >
+        Proceed to checkout
+      </button>
     </div>
   );
 };

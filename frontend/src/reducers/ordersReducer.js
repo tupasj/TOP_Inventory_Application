@@ -25,7 +25,7 @@ const ordersReducer = (orders, action) => {
           action.payload.id
         );
       }
-      return orders.filter((order) => order._id !== action.payload.id);
+      return orders.filter((order) => order.clothingItem._id !== action.payload.id);
     }
     case "set": {
       return [...action.payload.newOrders];
@@ -56,7 +56,7 @@ const ordersReducer = (orders, action) => {
     case "change quantity": {
       if (action.payload.quantity >= 1) {
         const ordersWithUpdatedQuantity = orders.filter((order) =>
-          order._id === action.payload.id
+          order.clothingItem._id === action.payload.id
             ? (order.quantity = action.payload.quantity)
             : order.quantity
         );

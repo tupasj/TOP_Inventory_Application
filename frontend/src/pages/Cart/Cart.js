@@ -6,9 +6,9 @@ const Cart = (props) => {
   const currentUser = props.currentUser;
   
   return (
-    <main className="cart">
-      <div className="cart__title">Your Cart</div>
-      <div className="cart__container">
+    <main className="px-6 py-4">
+      <div className="my-2 font-bold">Your Cart</div>
+      <div className="cart-container">
         <CartItems currentUser={currentUser} />
         <div className="cart__side-buttons">
           <CartTotal />

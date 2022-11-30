@@ -65,7 +65,7 @@ const App = () => {
     dispatch({
       type: "change quantity",
       payload: {
-        id: order._id,
+        id: order.clothingItem._id,
         quantity: e.target.valueAsNumber,
       },
     });

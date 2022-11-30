@@ -15,8 +15,8 @@ const HeaderButtons = (props) => {
   };
 
   return (
-    <div className="header-buttons">
-      <div className="account-dropdown-icons" onClick={toggleDropdown}>
+    <div className="flex gap-[22px] cursor-pointer">
+      <div className="relative" onClick={toggleDropdown}>
         <i className="fa-solid fa-user"></i>
         <i className="fa-sharp fa-solid fa-caret-down"></i>
       </div>
@@ -25,7 +25,12 @@ const HeaderButtons = (props) => {
       )}
       <Link to="/cart">
         <i className="fa-solid fa-cart-shopping">
-          <span className="cart-counter">{itemCount}</span>
+          <span
+            className="p-1 absolute left-3 bottom-2 rounded-[50%] bg-red
+          text-xs font-bold text-[#fff]"
+          >
+            {itemCount}
+          </span>
         </i>
       </Link>
     </div>

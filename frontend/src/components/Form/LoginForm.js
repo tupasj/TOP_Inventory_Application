@@ -7,7 +7,7 @@ import ClothesAPI from "../../utils/api/ClothesAPI";
 const LoginForm = (props) => {
   const setCurrentUser = props.setCurrentUser;
   const closeLoginModal = props.closeLoginModal;
-  const [generalError, setGeneralError] = useState('');
+  const [generalError, setGeneralError] = useState("");
 
   const initialValues = {
     email: "",
@@ -26,9 +26,14 @@ const LoginForm = (props) => {
 
   const onSubmit = async (values) => {
     console.log("values: ", values);
-    const currentUser = await ClothesAPI.verifyUserCredentials(values.email, values.password);
+    const currentUser = await ClothesAPI.verifyUserCredentials(
+      values.email,
+      values.password
+    );
     if (!currentUser) {
-      setGeneralError("The current account does not exist in our records. Please try a different username and/or password.");
+      setGeneralError(
+        "The current account does not exist in our records. Please try a different username and/or password."
+      );
     } else if (currentUser) {
       setCurrentUser(currentUser);
       closeLoginModal();
@@ -47,16 +52,23 @@ const LoginForm = (props) => {
         resetForm();
       }}
     >
-      <Form>
+      <Form className="flex flex-col items-center gap-[15px] text-center">
         {generalError && <ErrorMessageText>{generalError}</ErrorMessageText>}
         <div className="form-control">
           <label htmlFor="email" />
-          <Field type="email" id="email" name="email" placeholder="Email" />
+          <Field
+            className="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email"
+          />
           <ErrorMessage name="email" component={ErrorMessageText} />
         </div>
         <div className="form-control">
           <label htmlFor="password" />
           <Field
+            className="form-input"
             type="password"
             id="password"
             name="password"
@@ -64,9 +76,9 @@ const LoginForm = (props) => {
           />
           <ErrorMessage name="password" component={ErrorMessageText} />
         </div>
-        <div className="password-message"></div>
+        <div className="password-message hidden text-red"></div>
         <button
-          className="login-button"
+          className="p-1 w-3/4 rounded-md bg-peach-light hover:bg-peach-dark"
           type="submit"
           onClick={() => (validationActive = true)}
         >

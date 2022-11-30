@@ -28,7 +28,11 @@ const AddToCartButton = forwardRef(function (props, ref) {
     }
 
     // Handle duplicate orders
-    const isDuplicateOrder = checkDuplicateOrders(orders, productID, currentUser);
+    const isDuplicateOrder = checkDuplicateOrders(
+      orders,
+      productID,
+      currentUser
+    );
     if (isDuplicateOrder) {
       updateOrder(quantity, clothingItem, currentUser);
     } else {
@@ -42,7 +46,12 @@ const AddToCartButton = forwardRef(function (props, ref) {
 
   return (
     <>
-      <button onClick={updateCart}>Add to cart</button>
+      <button
+        className="px-2 py-1 bg-peach-light border-[1px] border-peach-dark rounded-xl cursor-pointer"
+        onClick={updateCart}
+      >
+        Add to cart
+      </button>
     </>
   );
 });
