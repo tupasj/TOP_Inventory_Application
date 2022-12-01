@@ -5,12 +5,12 @@ import { makeFilterQueryParamsString } from "../filterUtils";
 const getClothesByType = async (clothesType) => {
   if (clothesType === "all") {
     const allClothesResponse = await axios.get(
-      `http://localhost:4000/products`
+      `https://top-inventory-application.up.railway.app/products`
     );
     return allClothesResponse.data;
   } else {
     const clothesByTypeResponse = await axios.get(
-      `http://localhost:4000/products/${clothesType}`
+      `https://top-inventory-application.up.railway.app/products/${clothesType}`
     );
     return clothesByTypeResponse.data;
   }
@@ -24,14 +24,14 @@ const getFilteredProducts = async (filter) => {
 
 const getSelectedProduct = async (productID) => {
   const selectedProductResponse = await axios.get(
-    `http://localhost:4000/product-view/${productID}`
+    `https://top-inventory-application.up.railway.app/product-view/${productID}`
   );
   return selectedProductResponse.data;
 };
 
 const getSearchedProducts = async (searchValue, type) => {
   const searchedProductResponse = await axios.get(
-    `http://localhost:4000/results/search_query=${searchValue}/${type}`
+    `https://top-inventory-application.up.railway.app/results/search_query=${searchValue}/${type}`
   );
   return searchedProductResponse.data;
 };
@@ -39,7 +39,7 @@ const getSearchedProducts = async (searchValue, type) => {
 const verifyUserCredentials = async (email, password) => {
   try {
     const userResponse = await axios.get(
-      `http://localhost:4000/user/email=${email}/password=${password}`
+      `https://top-inventory-application.up.railway.app/user/email=${email}/password=${password}`
     );
     return userResponse.data[0];
   } catch (error) {
@@ -49,7 +49,7 @@ const verifyUserCredentials = async (email, password) => {
 };
 
 const createUser = async (user) => {
-  await axios.post(`http://localhost:4000/user`, user);
+  await axios.post(`https://top-inventory-application.up.railway.app/user`, user);
 };
 
 const addCartItem = async (userEmail, clothingItem, quantity) => {
@@ -60,7 +60,7 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
         quantity,
       };
       await axios.post(
-        `http://localhost:4000/user/email=${userEmail}`,
+        `https://top-inventory-application.up.railway.app/user/email=${userEmail}`,
         payload
       );
     } else {
@@ -68,7 +68,7 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
         clothingItem,
       };
       await axios.post(
-        `http://localhost:4000/user/email=${userEmail}`,
+        `https://top-inventory-application.up.railway.app/user/email=${userEmail}`,
         payload
       );
     }
@@ -81,7 +81,7 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
 const getUser = async (userEmail) => {
   try {
     const userResponse = await axios.get(
-      `http://localhost:4000/user/email=${userEmail}`
+      `https://top-inventory-application.up.railway.app/user/email=${userEmail}`
     );
     return userResponse.data;
   } catch (error) {
@@ -93,7 +93,7 @@ const getUser = async (userEmail) => {
 const getUserCart = async (userEmail) => {
   try {
     const userCartResponse = await axios.get(
-      `http://localhost:4000/user/email=${userEmail}/user-cart`
+      `https://top-inventory-application.up.railway.app/user/email=${userEmail}/user-cart`
     );
     return userCartResponse.data;
   } catch (error) {
@@ -108,7 +108,7 @@ const updateCartItem = async (quantity, clothingItem, userEmail) => {
       quantity,
       clothingItem,
     };
-    await axios.patch(`http://localhost:4000/user/email=${userEmail}`, payload);
+    await axios.patch(`https://top-inventory-application.up.railway.app/user/email=${userEmail}`, payload);
   } catch (error) {
     console.log("updateCartItem() error");
     axiosErrorHandler(error);
@@ -117,7 +117,7 @@ const updateCartItem = async (quantity, clothingItem, userEmail) => {
 
 const deleteCartItem = async (userEmail, cartItemID) => {
   try {
-    await axios.delete(`http://localhost:4000/user/email=${userEmail}`, {
+    await axios.delete(`https://top-inventory-application.up.railway.app/user/email=${userEmail}`, {
       data: { cartItemID },
     });
   } catch (error) {
