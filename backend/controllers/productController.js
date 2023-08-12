@@ -1,5 +1,5 @@
-const ClothingItem = require("../models/clothingItemModel");
-const { getClothingByType, getQueryByType } = require("../utils/clothingUtils");
+const ClothingItem = require('../models/clothingItemModel');
+const { getClothingByType, getQueryByType } = require('../utils/clothingUtils');
 
 const getClothing = async (req, res, type) => {
   if (type) {
@@ -13,7 +13,7 @@ const getClothing = async (req, res, type) => {
 const getFilteredClothes = async (req, res) => {
   // In req.query object, turn price: value into price: {$lte: value}
   for (let property in req.query) {
-    if (property == "price") {
+    if (property == 'price') {
       req.query[property] = { $lte: req.query[property] };
     }
   }

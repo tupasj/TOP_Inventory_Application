@@ -1,16 +1,16 @@
-import axios from "axios";
-import { axiosErrorHandler } from "../errors";
-import { makeFilterQueryParamsString } from "../filterUtils";
+import axios from 'axios';
+import { axiosErrorHandler } from '../errors';
+import { makeFilterQueryParamsString } from '../filterUtils';
 
 const getClothesByType = async (clothesType) => {
-  if (clothesType === "all") {
+  if (clothesType === 'all') {
     const allClothesResponse = await axios.get(
-      `https://top-inventory-application.up.railway.app/products`
+      `http://localhost:4000/products`
     );
     return allClothesResponse.data;
   } else {
     const clothesByTypeResponse = await axios.get(
-      `https://top-inventory-application.up.railway.app/products/${clothesType}`
+      `http://localhost:4000/products/${clothesType}`
     );
     return clothesByTypeResponse.data;
   }
@@ -24,14 +24,14 @@ const getFilteredProducts = async (filter) => {
 
 const getSelectedProduct = async (productID) => {
   const selectedProductResponse = await axios.get(
-    `https://top-inventory-application.up.railway.app/product-view/${productID}`
+    `http://localhost:4000/product-view/${productID}`
   );
   return selectedProductResponse.data;
 };
 
 const getSearchedProducts = async (searchValue, type) => {
   const searchedProductResponse = await axios.get(
-    `https://top-inventory-application.up.railway.app/results/search_query=${searchValue}/${type}`
+    `http://localhost:4000/results/search_query=${searchValue}/${type}`
   );
   return searchedProductResponse.data;
 };
@@ -39,17 +39,17 @@ const getSearchedProducts = async (searchValue, type) => {
 const verifyUserCredentials = async (email, password) => {
   try {
     const userResponse = await axios.get(
-      `https://top-inventory-application.up.railway.app/user/email=${email}/password=${password}`
+      `http://localhost:4000/user/email=${email}/password=${password}`
     );
     return userResponse.data[0];
   } catch (error) {
-    console.log("verifyUserCredentials() error");
+    console.log('verifyUserCredentials() error');
     axiosErrorHandler(error);
   }
 };
 
 const createUser = async (user) => {
-  await axios.post(`https://top-inventory-application.up.railway.app/user`, user);
+  await axios.post(`http://localhost:4000/user`, user);
 };
 
 const addCartItem = async (userEmail, clothingItem, quantity) => {
@@ -60,7 +60,7 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
         quantity,
       };
       await axios.post(
-        `https://top-inventory-application.up.railway.app/user/email=${userEmail}`,
+        `http://localhost:4000/user/email=${userEmail}`,
         payload
       );
     } else {
@@ -68,12 +68,12 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
         clothingItem,
       };
       await axios.post(
-        `https://top-inventory-application.up.railway.app/user/email=${userEmail}`,
+        `http://localhost:4000/user/email=${userEmail}`,
         payload
       );
     }
   } catch (error) {
-    console.log("addCartItem() error");
+    console.log('addCartItem() error');
     axiosErrorHandler(error);
   }
 };
@@ -81,11 +81,11 @@ const addCartItem = async (userEmail, clothingItem, quantity) => {
 const getUser = async (userEmail) => {
   try {
     const userResponse = await axios.get(
-      `https://top-inventory-application.up.railway.app/user/email=${userEmail}`
+      `http://localhost:4000/user/email=${userEmail}`
     );
     return userResponse.data;
   } catch (error) {
-    console.log("getUser() error");
+    console.log('getUser() error');
     axiosErrorHandler(error);
   }
 };
@@ -93,11 +93,11 @@ const getUser = async (userEmail) => {
 const getUserCart = async (userEmail) => {
   try {
     const userCartResponse = await axios.get(
-      `https://top-inventory-application.up.railway.app/user/email=${userEmail}/user-cart`
+      `http://localhost:4000/user/email=${userEmail}/user-cart`
     );
     return userCartResponse.data;
   } catch (error) {
-    console.log("getUserCart() error");
+    console.log('getUserCart() error');
     axiosErrorHandler(error);
   }
 };
@@ -108,20 +108,20 @@ const updateCartItem = async (quantity, clothingItem, userEmail) => {
       quantity,
       clothingItem,
     };
-    await axios.patch(`https://top-inventory-application.up.railway.app/user/email=${userEmail}`, payload);
+    await axios.patch(`http://localhost:4000/user/email=${userEmail}`, payload);
   } catch (error) {
-    console.log("updateCartItem() error");
+    console.log('updateCartItem() error');
     axiosErrorHandler(error);
   }
 };
 
 const deleteCartItem = async (userEmail, cartItemID) => {
   try {
-    await axios.delete(`https://top-inventory-application.up.railway.app/user/email=${userEmail}`, {
+    await axios.delete(`http://localhost:4000/user/email=${userEmail}`, {
       data: { cartItemID },
     });
   } catch (error) {
-    console.log("deleteCartItem() error");
+    console.log('deleteCartItem() error');
     axiosErrorHandler(error);
   }
 };

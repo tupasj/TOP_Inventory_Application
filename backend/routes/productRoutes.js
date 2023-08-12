@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 const {
   getClothing,
   getFilteredClothes,
-} = require("../controllers/productController");
+} = require('../controllers/productController');
 
-router.route("/").get((req, res) => {
+router.route('/').get((req, res) => {
   getClothing(req, res, null);
 });
-router.route("/filter?").get(getFilteredClothes);
-router.route("/:type").get((req, res) => {
+router.route('/filter?').get(getFilteredClothes);
+router.route('/:type').get((req, res) => {
   getClothing(req, res, req.params.type);
 });
 

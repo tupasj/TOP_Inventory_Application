@@ -9,11 +9,11 @@ const getFilterCategory = (value) => {
   const filterValueParsed = parseFloat(value);
 
   if (filterValueParsed <= 5.0) {
-    return "minIntMatch";
+    return 'minIntMatch';
   } else if (filterValueParsed >= 50) {
-    return "maxIntMatch";
+    return 'maxIntMatch';
   } else {
-    return "stringMatch";
+    return 'stringMatch';
   }
 };
 
@@ -22,18 +22,18 @@ const filterbyCategory = (productsToFilter, filterCategory, filterValue) => {
   let appliedFilter;
 
   switch (filterCategory) {
-    case "stringMatch":
+    case 'stringMatch':
       appliedFilter = productsToFilter.filter((product) => {
         const matchingKey = getKeyByValue(product, filterValue);
         return matchingKey;
       });
       break;
-    case "minIntMatch":
+    case 'minIntMatch':
       appliedFilter = productsToFilter.filter((product) => {
         return filterValueParsed <= product.rating;
       });
       break;
-    case "maxIntMatch":
+    case 'maxIntMatch':
       appliedFilter = productsToFilter.filter((product) => {
         return filterValueParsed >= product.price;
       });
@@ -45,20 +45,20 @@ const filterbyCategory = (productsToFilter, filterCategory, filterValue) => {
 const makeFilterQueryParamsString = (filterArray) => {
   const filterCategories = [
     {
-      title: "category",
-      items: ["tops", "pants", "shorts", "accessories"],
+      title: 'category',
+      items: ['tops', 'pants', 'shorts', 'accessories'],
     },
     {
-      title: "style",
-      items: ["casual", "formal", "semi-formal", "indoor"],
+      title: 'style',
+      items: ['casual', 'formal', 'semi-formal', 'indoor'],
     },
     {
-      title: "rating",
-      items: ["3.0", "3.5", "4.0", "4.5", "5.0"],
+      title: 'rating',
+      items: ['3.0', '3.5', '4.0', '4.5', '5.0'],
     },
     {
-      title: "price",
-      items: ["50", "100", "150", "200", "250", "300"],
+      title: 'price',
+      items: ['50', '100', '150', '200', '250', '300'],
     },
   ];
   const makeQueryParamsObject = (filterArray) => {
@@ -84,7 +84,7 @@ const makeFilterQueryParamsString = (filterArray) => {
 
   const queryParamsObject = makeQueryParamsObject(filterArray);
 
-  let filterQueryParamsString = "https://top-inventory-application.up.railway.app/products/filter?";
+  let filterQueryParamsString = 'http://localhost:4000/products/filter?';
   for (const property in queryParamsObject) {
     filterQueryParamsString += `${property}=${queryParamsObject[property]}&`;
   }

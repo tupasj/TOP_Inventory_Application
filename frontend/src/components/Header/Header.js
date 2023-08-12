@@ -1,6 +1,7 @@
-import { HeaderButtons } from "./HeaderButtons";
-import { Logo } from "./Logo";
-import { Search } from "./Search";
+import { HeaderButtons } from './HeaderButtons';
+import { Logo } from './Logo';
+import { Search } from './Search';
+import { Navigation } from '../Navigation';
 
 const Header = (props) => {
   const itemCount = props.itemCount;
@@ -11,14 +12,18 @@ const Header = (props) => {
   const orders = props.orders;
 
   return (
-    <header className="flex justify-between items-center px-9 h-[65px] bg-peach-dark">
-      <Logo setType={setType} />
-      <Search
-        type={type}
-        setSearchQuery={setSearchQuery}
-        setClothes={setClothes}
-      />
-      <HeaderButtons itemCount={itemCount} orders={orders} />
+    <header>
+      <div className="flex justify-between items-center pt-9 pb-6 px-5 bg-white">
+        <Logo setType={setType} />
+        <Search
+          type={type}
+          setSearchQuery={setSearchQuery}
+          setClothes={setClothes}
+        />
+        <HeaderButtons itemCount={itemCount} orders={orders} />
+      </div>
+      <div className="bg-dark-gray/50 h-[1px]"></div>
+      <Navigation setType={setType} />
     </header>
   );
 };

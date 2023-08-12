@@ -1,16 +1,16 @@
-const ClothingItem = require("../models/clothingItemModel");
+const ClothingItem = require('../models/clothingItemModel');
 
 const getQueryByType = (type) => {
   switch (type) {
-    case "all":
+    case 'all':
       return {};
-    case "men":
-      return { gender: "male" };
-    case "women":
-      return { gender: "female" };
-    case "brand-new":
+    case 'men':
+      return { gender: 'male' };
+    case 'women':
+      return { gender: 'female' };
+    case 'brand-new':
       return { brandNew: true };
-    case "on-sale":
+    case 'on-sale':
       return { salePrice: { $exists: true } };
   }
 };

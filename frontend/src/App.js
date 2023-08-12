@@ -1,27 +1,26 @@
-import { useState, useEffect, useReducer } from "react";
-import { HashRouter, Routes, Route } from "react-router-dom";
-import { ordersReducer } from "./reducers/ordersReducer";
-import { Header } from "./components/Header";
-import { Navigation } from "./components/Navigation";
-import { Main } from "./components/Main";
-import { LoginModal } from "./components/UI";
-import { SignupModal } from "./components/UI/SignupModal";
-import { Cart } from "./pages/Cart/Cart";
-import { UserContext } from "./context/UserContext";
-import { CartContext } from "./context/CartContext";
-import ClothesAPI from "./utils/api/ClothesAPI";
+import { useState, useEffect, useReducer } from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+import { ordersReducer } from './reducers/ordersReducer';
+import { Header } from './components/Header';
+import { Main } from './components/Main';
+import { LoginModal } from './components/UI';
+import { SignupModal } from './components/UI/SignupModal';
+import { Cart } from './pages/Cart/Cart';
+import { UserContext } from './context/UserContext';
+import { CartContext } from './context/CartContext';
+import ClothesAPI from './utils/api/ClothesAPI';
 
 const App = () => {
   const [itemCount, setItemCount] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [type, setType] = useState("all");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [type, setType] = useState('all');
   const [clothes, setClothes] = useState([]);
   const [currentUser, setCurrentUser] = useState(false);
   const [orders, dispatch] = useReducer(ordersReducer, []);
 
   const addOrder = (currentUser, order, quantity) => {
     dispatch({
-      type: "added",
+      type: 'added',
       payload: {
         currentUser: currentUser,
         newOrder: order,
@@ -32,7 +31,7 @@ const App = () => {
 
   const removeOrder = (orderId, currentUser) => {
     dispatch({
-      type: "deleted",
+      type: 'deleted',
       payload: {
         id: orderId,
         currentUser: currentUser,
@@ -42,7 +41,7 @@ const App = () => {
 
   const replaceOrders = (orderArray, currentUser) => {
     dispatch({
-      type: "set",
+      type: 'set',
       payload: {
         newOrders: orderArray,
         currentUser: currentUser,
@@ -52,7 +51,7 @@ const App = () => {
 
   const updateOrder = (quantity, orderToUpdate, currentUser) => {
     dispatch({
-      type: "update",
+      type: 'update',
       payload: {
         quantity,
         orderToUpdate,
@@ -63,7 +62,7 @@ const App = () => {
 
   const modifyOrderQuantityOnChange = (e, order) => {
     dispatch({
-      type: "change quantity",
+      type: 'change quantity',
       payload: {
         id: order.clothingItem._id,
         quantity: e.target.valueAsNumber,
@@ -85,7 +84,7 @@ const App = () => {
       replaceOrders([]);
     }
 
-    console.log("currentUser: ", currentUser);
+    console.log('currentUser: ', currentUser);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser]);
 
@@ -101,7 +100,7 @@ const App = () => {
     };
     updateItemCount();
 
-    console.log("orders: ", orders);
+    console.log('orders: ', orders);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [orders]);
 
@@ -117,7 +116,6 @@ const App = () => {
           orders={orders}
         />
       </UserContext.Provider>
-      <Navigation setType={setType} />
       <CartContext.Provider
         value={{
           orders,

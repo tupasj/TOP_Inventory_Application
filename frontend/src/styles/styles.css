@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-light-gray;
-  }
   .form-input {
     @apply p-1 border-[2px] border-peach-light rounded;
   }
