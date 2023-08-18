@@ -48,7 +48,7 @@ const Search = (props) => {
         <i className="fa-solid fa-magnifying-glass"></i>
       </button>
       <input
-        className="pl-1 border-0 rounded-lg
+        className="w-[95%] pl-1 border-0 rounded-lg
         focus-visible:outline-none"
         type="text"
         placeholder="Search for a product"

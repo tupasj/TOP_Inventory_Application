@@ -13,7 +13,7 @@ const Header = (props) => {
 
   return (
     <header>
-      <div className="flex justify-between items-center pt-9 pb-6 px-5 bg-white">
+      <div className="flex justify-between items-center py-5 pl-5 pr-8 bg-white">
         <Logo setType={setType} />
         <Search
           type={type}
