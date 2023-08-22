@@ -9,28 +9,28 @@ const Navigation = (props) => {
       <div className="w-1/2 flex justify-around items-center text-lg">
         <Link
           className="hover:underline"
-          to="/men"
+          to="/products/men"
           onClick={() => setType('men')}
         >
           Men
         </Link>
         <Link
           className="hover:underline"
-          to="/women"
+          to="/products/women"
           onClick={() => setType('women')}
         >
           Women
         </Link>
         <Link
           className="hover:underline"
-          to="/brand-new"
+          to="/products/brand-new"
           onClick={() => setType('brand-new')}
         >
           Brand new
         </Link>
         <Link
           className="text-red visited:text-red hover:underline"
-          to="/on-sale"
+          to="/products/on-sale"
           onClick={() => setType('on-sale')}
         >
           On Sale

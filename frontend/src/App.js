@@ -6,9 +6,14 @@ import { Main } from './components/Main';
 import { LoginModal } from './components/UI';
 import { SignupModal } from './components/UI/SignupModal';
 import { Cart } from './pages/Cart/Cart';
+import { LandingPage } from './pages/LandingPage/LandingPage';
 import { UserContext } from './context/UserContext';
 import { CartContext } from './context/CartContext';
 import ClothesAPI from './utils/api/ClothesAPI';
+import { Products } from './components/Main';
+import { ProductView } from './components/Routes';
+import { NoProductMatch } from './components/Routes/NoProductMatch';
+import { RoutingError } from './components/Routes/RoutingError';
 
 const App = () => {
   const [itemCount, setItemCount] = useState(0);
@@ -127,8 +132,9 @@ const App = () => {
         }}
       >
         <Routes>
+          <Route path="/" element={<LandingPage />} />
           <Route
-            path="/*"
+            path="/products/*"
             element={
               <Main
                 itemCount={itemCount}
@@ -142,6 +148,13 @@ const App = () => {
               />
             }
           />
+          <Route path="/product-view/:paramId" element={<ProductView />} />
+          <Route
+            path={`/results/search_query`}
+            element={<Products products={clothes} />}
+          />
+          <Route path="/error/no-product-match" element={<NoProductMatch />} />
+          <Route path="*" element={<RoutingError />} />
           <Route path="/cart" element={<Cart currentUser={currentUser} />} />
         </Routes>
       </CartContext.Provider>
