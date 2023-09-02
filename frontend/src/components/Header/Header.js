@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { HeaderButtons } from './HeaderButtons';
 import { Logo } from './Logo';
 import { Search } from './Search';
@@ -10,21 +11,28 @@ const Header = (props) => {
   const setType = props.setType;
   const setClothes = props.setClothes;
   const orders = props.orders;
+  const location = useLocation();
+  const notSignInOrRegisterPath =
+    location.pathname !== '/sign-in' && location.pathname !== '/register';
 
   return (
-    <header>
-      <div className="flex justify-between items-center py-5 pl-5 pr-8 bg-white">
-        <Logo setType={setType} />
-        <Search
-          type={type}
-          setSearchQuery={setSearchQuery}
-          setClothes={setClothes}
-        />
-        <HeaderButtons itemCount={itemCount} orders={orders} />
-      </div>
-      <div className="bg-dark-gray/50 h-[1px]"></div>
-      <Navigation setType={setType} />
-    </header>
+    <>
+      {notSignInOrRegisterPath && (
+        <header>
+          <div className="flex justify-between items-center py-5 pl-5 pr-8 bg-white">
+            <Logo setType={setType} />
+            <Search
+              type={type}
+              setSearchQuery={setSearchQuery}
+              setClothes={setClothes}
+            />
+            <HeaderButtons itemCount={itemCount} orders={orders} />
+          </div>
+          <div className="bg-dark-gray/50 h-[1px]"></div>
+          <Navigation setType={setType} />
+        </header>
+      )}
+    </>
   );
 };
 

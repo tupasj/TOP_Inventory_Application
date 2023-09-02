@@ -10,7 +10,6 @@ import { RoutingError } from '../Routes/RoutingError';
 import { NoProductMatch } from '../Routes/NoProductMatch';
 import { Products } from './Products';
 import ClothesAPI from '../../utils/api/ClothesAPI';
-import { LandingPage } from '../../pages/LandingPage/LandingPage';
 
 const Main = (props) => {
   const itemCount = props.itemCount;
@@ -22,11 +21,6 @@ const Main = (props) => {
   const setCurrentUser = props.setCurrentUser;
   const [filter, setFilter] = useState([]);
   const [removedFilter, setRemovedFilter] = useState(false);
-  // const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   navigate('/all');
-  // }, []);
 
   useEffect(() => {
     const getClothesByType = async (clothesType) => {

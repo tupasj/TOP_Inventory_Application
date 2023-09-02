@@ -1,21 +1,10 @@
-import { useContext } from "react";
-import { UserContext } from "../../context/UserContext";
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 
 const AccountDropdown = (props) => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const setDropdownActive = props.setDropdownActive;
-
-  const openLoginModal = () => {
-    const loginModal = document.querySelector(".login-modal");
-    loginModal.showModal();
-    setDropdownActive(false);
-  };
-
-  const openSignupModal = () => {
-    const signupModal = document.querySelector(".signup-modal");
-    signupModal.showModal();
-    setDropdownActive(false);
-  };
 
   const logout = () => {
     setCurrentUser(false);
@@ -32,14 +21,18 @@ const AccountDropdown = (props) => {
         {currentUser ? (
           <span>View Account</span>
         ) : (
-          <span onClick={openLoginModal}>Log In</span>
+          <Link to="/sign-in" onClick={() => setDropdownActive(false)}>
+            <span>Log In</span>
+          </Link>
         )}
       </div>
       <div className="px-2 text-dark-gray hover:bg-light-gray">
         {currentUser ? (
           <span onClick={logout}>Log Out</span>
         ) : (
-          <span onClick={openSignupModal}>Sign Up</span>
+          <Link to="/register" onClick={() => setDropdownActive(false)}>
+            <span>Sign Up</span>
+          </Link>
         )}
       </div>
     </div>

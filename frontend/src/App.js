@@ -7,6 +7,8 @@ import { LoginModal } from './components/UI';
 import { SignupModal } from './components/UI/SignupModal';
 import { Cart } from './pages/Cart/Cart';
 import { LandingPage } from './pages/LandingPage/LandingPage';
+import { SignInPage } from './pages/SignInPage/SignInPage';
+import { RegistrationPage } from './pages/RegistrationPage/RegistrationPage';
 import { UserContext } from './context/UserContext';
 import { CartContext } from './context/CartContext';
 import ClothesAPI from './utils/api/ClothesAPI';
@@ -110,57 +112,64 @@ const App = () => {
   }, [orders]);
 
   return (
-    <HashRouter baseName="/TOP_Shopping_Cart">
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-        <Header
-          itemCount={itemCount}
-          setSearchQuery={setSearchQuery}
-          type={type}
-          setType={setType}
-          setClothes={setClothes}
-          orders={orders}
-        />
-      </UserContext.Provider>
-      <CartContext.Provider
-        value={{
-          orders,
-          addOrder,
-          removeOrder,
-          replaceOrders,
-          updateOrder,
-          modifyOrderQuantityOnChange,
-        }}
-      >
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route
-            path="/products/*"
-            element={
-              <Main
-                itemCount={itemCount}
-                setItemCount={setItemCount}
-                searchQuery={searchQuery}
-                type={type}
-                clothes={clothes}
-                setClothes={setClothes}
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
-              />
-            }
+    <div>
+      <HashRouter baseName="/TOP_Shopping_Cart">
+        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+          <Header
+            itemCount={itemCount}
+            setSearchQuery={setSearchQuery}
+            type={type}
+            setType={setType}
+            setClothes={setClothes}
+            orders={orders}
           />
-          <Route path="/product-view/:paramId" element={<ProductView />} />
-          <Route
-            path={`/results/search_query`}
-            element={<Products products={clothes} />}
-          />
-          <Route path="/error/no-product-match" element={<NoProductMatch />} />
-          <Route path="*" element={<RoutingError />} />
-          <Route path="/cart" element={<Cart currentUser={currentUser} />} />
-        </Routes>
-      </CartContext.Provider>
-      <LoginModal setCurrentUser={setCurrentUser} />
-      <SignupModal />
-    </HashRouter>
+        </UserContext.Provider>
+        <CartContext.Provider
+          value={{
+            orders,
+            addOrder,
+            removeOrder,
+            replaceOrders,
+            updateOrder,
+            modifyOrderQuantityOnChange,
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/sign-in" element={<SignInPage />} />
+            <Route path="/register" element={<RegistrationPage />} />
+            <Route
+              path="/products/*"
+              element={
+                <Main
+                  itemCount={itemCount}
+                  setItemCount={setItemCount}
+                  searchQuery={searchQuery}
+                  type={type}
+                  clothes={clothes}
+                  setClothes={setClothes}
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                />
+              }
+            />
+            <Route path="/product-view/:paramId" element={<ProductView />} />
+            <Route
+              path={`/results/search_query`}
+              element={<Products products={clothes} />}
+            />
+            <Route
+              path="/error/no-product-match"
+              element={<NoProductMatch />}
+            />
+            <Route path="*" element={<RoutingError />} />
+            <Route path="/cart" element={<Cart currentUser={currentUser} />} />
+          </Routes>
+        </CartContext.Provider>
+        <LoginModal setCurrentUser={setCurrentUser} />
+        <SignupModal />
+      </HashRouter>
+    </div>
   );
 };
 
