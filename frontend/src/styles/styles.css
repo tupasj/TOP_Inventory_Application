@@ -3,8 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  .form-control {
+    @apply w-full pb-1;
+  }
   .form-input {
-    @apply p-1 border-[2px] border-peach-light rounded;
+    @apply p-1 w-full border-b-[2px] border-b-peach-light outline-none rounded;
   }
   nav > a {
     @apply mx-4 text-lg text-black hover:underline;

@@ -1,4 +1,5 @@
 import { Logo } from '../../components/Header';
+import { SignupForm } from '../../components/Form/SignupForm';
 
 const RegistrationPage = () => {
   return (
@@ -24,6 +25,10 @@ const RegistrationPage = () => {
           <i class="fa-solid fa-circle text-[5px]"></i>
           <i class="fa-solid fa-circle text-[5px]"></i>
           <i class="fa-solid fa-circle text-[5px]"></i>
+        </div>
+        <div className="text-center text-sm">or make a Lorem Ipsum account</div>
+        <div className="pt-6">
+          <SignupForm></SignupForm>
         </div>
       </div>
     </div>
