@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Checkbox from '@mui/material/Checkbox';
 import { ErrorMessageText } from './ErrorMessageText';
 import ClothesAPI from '../../utils/api/ClothesAPI';
 
@@ -52,55 +53,67 @@ const SignupForm = () => {
             successfulSignupNotice();
           }}
         >
-          <Form className="flex flex-col items-center gap-[15px] text-center">
-            <div className="form-control">
-              <label htmlFor="name" />
-              <Field
-                className="form-input"
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Name"
-              />
-              <ErrorMessage name="name" component={ErrorMessageText} />
-            </div>
-            <div className="form-control">
-              <label htmlFor="email" />
-              <Field
-                className="form-input"
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Email"
-              />
-              <ErrorMessage name="email" component={ErrorMessageText} />
-            </div>
-            <div className="form-control">
-              <label htmlFor="password" />
-              <Field
-                className="form-input"
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-              />
-              <ErrorMessage name="password" component={ErrorMessageText} />
-            </div>
-            <div className="password-message hidden text-red"></div>
-            <div>
-              By creating an account, you confirm that you are aged 18 years or
-              above and you agree to be bound by our{' '}
-              <span className="hover:underline hover:cursor-pointer text-left text-extra-dark-blue">
-                Privacy Policy
-              </span>{' '}
-              and{' '}
-              <span className="hover:underline hover:cursor-pointer text-left text-extra-dark-blue">
-                Terms of Use
-              </span>
+          <Form className="grow flex flex-col justify-evenly items-center gap-[15px] text-center">
+            <div className="w-full">
+              <div className="form-control">
+                <label htmlFor="name" />
+                <Field
+                  className="form-input"
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Name"
+                />
+                <ErrorMessage name="name" component={ErrorMessageText} />
+              </div>
+              <div className="form-control">
+                <label htmlFor="email" />
+                <Field
+                  className="form-input"
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                />
+                <ErrorMessage name="email" component={ErrorMessageText} />
+              </div>
+              <div className="form-control">
+                <label htmlFor="password" />
+                <Field
+                  className="form-input"
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage name="password" component={ErrorMessageText} />
+              </div>
+              <div className="password-message hidden text-red"></div>
             </div>
             <div>
-              I'd like to be informed of exclusive membership benefits, coupons
-              worth up to 15% off, personalized promotions and more!
+              <div className="flex items-start">
+                <Checkbox />
+                <div className="pt-2 text-sm text-left">
+                  By creating an account, you confirm that you are aged 18 years
+                  or above and you agree to be bound by our
+                  <span className="hover:underline hover:cursor-pointer text-left text-extra-dark-blue">
+                    {' '}
+                    Privacy Policy{' '}
+                  </span>
+                  and
+                  <span className="hover:underline hover:cursor-pointer text-left text-extra-dark-blue">
+                    {' '}
+                    Terms of Use
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <Checkbox />
+                <div className="pt-2 text-sm text-left">
+                  I'd like to be informed of exclusive membership benefits,
+                  coupons worth up to 15% off, personalized promotions and more!
+                </div>
+              </div>
             </div>
             <button
               className="p-1 w-3/4 rounded-md bg-peach-light hover:bg-peach-dark"

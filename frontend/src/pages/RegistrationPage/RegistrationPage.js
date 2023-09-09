@@ -7,7 +7,7 @@ const RegistrationPage = () => {
       <div className="flex justify-center items-center py-4">
         <Logo />
       </div>
-      <div className="flex-auto p-6 w-[420px] rounded-md shadow-md border-t-8 border-solid border-peach-light bg-white">
+      <div className="flex flex-col flex-auto p-6 w-[420px] rounded-md shadow-md border-t-8 border-solid border-peach-light bg-white">
         <div className="p-4 mt-4 mb-2 rounded text-center text-extra-dark-blue bg-blue border-t-4 border-solid border-dark-blue">
           Sign up and get 25% OFF your first purchase over $50!
         </div>
@@ -27,9 +27,7 @@ const RegistrationPage = () => {
           <i class="fa-solid fa-circle text-[5px]"></i>
         </div>
         <div className="text-center text-sm">or make a Lorem Ipsum account</div>
-        <div className="pt-6">
-          <SignupForm></SignupForm>
-        </div>
+        <SignupForm></SignupForm>
       </div>
     </div>
   );
